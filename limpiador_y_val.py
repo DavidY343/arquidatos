@@ -87,8 +87,8 @@ def limpiar_datos_meteo24(nombre_archivo, estaciones_archivo):
     db = client['arqui2']
     
     # Eliminar la colección si ya existe
-    if 'meteo24' in db.list_collection_names():
-        db.drop_collection('meteo24')
+    if 'RegistroClima' in db.list_collection_names():
+        db.drop_collection('RegistroClima')
 
     # Aplicar la validación del esquema
     db.create_collection('meteo24', validator={
@@ -122,7 +122,7 @@ def limpiar_datos_meteo24(nombre_archivo, estaciones_archivo):
         }
     })
     
-    collection = db['meteo24']
+    collection = db['RegistroClima']
     
     # Insertar los registros en la colección
     collection.insert_many(registros_limpios_list)
