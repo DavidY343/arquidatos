@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 import numpy as np
+from pymongo import MongoClient
 
 def limpiar_datasets():
     # Cargar el CSV
@@ -163,11 +164,14 @@ def limpiar_datasets():
     def convertir_fecha(fecha):
         # Intentar con varios formatos comunes
         for formato in ("%Y/%m/%d", "%d-%m-%Y", "%m-%d-%Y", "%Y-%m-%d", "%d/%m/%Y", "%y/%m/%d", "%y-%m-%d"):
-            try:
-                fecha_convertida = pd.to_datetime(fecha, format=formato)
-                return fecha_convertida.strftime("%Y-%m-%d")  # Formato sin hora
-            except ValueError:
-                continue
+            if fecha!=None:
+                try:
+                    fecha_convertida = pd.to_datetime(fecha, format=formato)
+                    return fecha_convertida.strftime("%Y-%m-%d")  # Formato sin hora
+                except ValueError:
+                    continue
+            else:
+                return None
         # Quitar la parte de la hora si tiene el formato "yyyy-mm-dd HH:MM:SS"
         if isinstance(fecha, str) and " " in fecha:
             return fecha.split(" ")[0]
@@ -185,19 +189,20 @@ def limpiar_datasets():
         fechas_minimas = df_aux.groupby('NDP')['FECHA_INSTALACION'].min().dropna()
 
         # Función para reemplazar la fecha en áreas si está vacía o contiene "fecha_incorrecta"
-        def reemplazar_fecha(row):
+        def reemplazar_fecha(row, fecha_minima):
             # Si la fecha está vacía o contiene "fecha_incorrecta"
             if pd.isna(row['FECHA_INSTALACION']) or row['FECHA_INSTALACION'] == "fecha_incorrecta":
                 # Primero intentar asignar la fecha más antigua de los juegos
                 nueva_fecha = fechas_minimas.get(row['NDP'], row['FECHA_INSTALACION'])
                 # Si la nueva fecha es inválida o NaT, asignar la ID como desconocida
                 if pd.isna(nueva_fecha) or row['FECHA_INSTALACION'] == "fecha_incorrecta":
-                    return f"{row['ID']}_FECHA_INSTALACION_desconocido"
+                    return fecha_minima
                 return nueva_fecha
             return row['FECHA_INSTALACION']
 
         # Aplicar la función a cada fila del dataset de áreas
-        df['FECHA_INSTALACION'] = df.apply(reemplazar_fecha, axis=1)
+        fecha_mas_antigua = df_aux['FECHA_INSTALACION'].min()
+        df['FECHA_INSTALACION'] = df.apply(reemplazar_fecha, axis=1, fecha_minima=fecha_mas_antigua)
         df['FECHA_INSTALACION'] = df['FECHA_INSTALACION'].apply(convertir_fecha)
     # Ejecutar la función
     actualizar_fecha_desde_aux(df_areas, df_juegos)
@@ -265,7 +270,7 @@ def limpiar_datasets():
                 if pd.notnull(ultima_fecha):
                     df.at[index, 'ultimaFechaMantenimiento'] = pd.to_datetime(ultima_fecha).strftime("%Y-%m-%d")
                 else:
-                    df.at[index, 'ultimaFechaMantenimiento'] = None
+                    df.at[index, 'ultimaFechaMantenimiento'] = df.at[index, 'fechaInstalacion']
 
         return df
 
@@ -316,6 +321,8 @@ def limpiar_datasets():
 
     def quitar_decimal_ndp(df):
         df['NDP'] = df['NDP'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['COD_DISTRITO'] = df['COD_DISTRITO'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['COD_POSTAL'] = df['COD_POSTAL'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
         return df
 
     # Aplicar la función a los DataFrames
@@ -358,6 +365,151 @@ def limpiar_datasets():
     df_juegos.to_csv('juegosLimpio.csv', index=False)
     df_mantenimiento.to_csv('mantenimientoLimpio.csv', index=False)
     df_incidencias_usuario.to_csv('incidenciasUsuarioLimpio.csv', index=False)
+
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client['arqui2']
+    
+    # Eliminar la colección si ya existe
+    if 'Juegos' in db.list_collection_names():
+        db.drop_collection('Juegos')
+
+
+    db.create_collection('Juegos', validator = {
+        "$jsonSchema": {
+            "bsonType": "object",
+            "title": "juegos",
+            "required": ["id", "nombre", "COD_BARRIO", "BARRIO", "COD_DISTRITO", "DISTRITO", "estadoOperativo", "LATITUD", "LONGITUD", "TIPO_VIA", "NOM_VIA", "COD_POSTAL", "fechaInstalacion"],
+            "properties": {
+                "id": {
+                    "bsonType": "int",
+                    "description": "Debe ser un número entero único que identifica cada registro."
+                },
+                "nombre": {
+                    "bsonType": "string",
+                    "description": "Nombre descriptivo del elemento."
+                },
+                "COD_BARRIO": {
+                    "bsonType": "int",
+                    "description": "Código numérico que representa el barrio."
+                },
+                "BARRIO": {
+                    "bsonType": "string",
+                    "description": "Nombre del barrio."
+                },
+                "COD_DISTRITO": {
+                    "bsonType": "int",
+                    "description": "Código numérico que representa el distrito."
+                },
+                "DISTRITO": {
+                    "bsonType": "string",
+                    "description": "Nombre del distrito."
+                },
+                "estadoOperativo": {
+                    "bsonType": "string",
+                    "enum": ["operativo", "inoperativo"],
+                    "description": "Estado del elemento, puede ser 'activo' o 'inactivo'."
+                },
+                "COORD_GIS_X": {
+                    "bsonType": "double",
+                    "description": "Coordenada X en el sistema de referencia."
+                },
+                "COORD_GIS_Y": {
+                    "bsonType": "double",
+                    "description": "Coordenada Y en el sistema de referencia."
+                },
+                "SISTEMA_COORD": {
+                    "bsonType": "string",
+                    "enum": ["etrs89"],
+                    "description": "Sistema de coordenadas utilizado."
+                },
+                "LATITUD": {
+                    "bsonType": "double",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "description": "Latitud en formato decimal."
+                },
+                "LONGITUD": {
+                    "bsonType": "double",
+                    "minimum": -180,
+                    "maximum": 180,
+                    "description": "Longitud en formato decimal."
+                },
+                "TIPO_VIA": {
+                    "bsonType": "string",
+                    "description": "Tipo de vía (ej., calle, avenida)."
+                },
+                "NOM_VIA": {
+                    "bsonType": "string",
+                    "description": "Nombre de la vía."
+                },
+                "NUM_VIA": {
+                    "bsonType": "string",
+                    "description": "Número de la vía."
+                },
+                "COD_POSTAL": {
+                    "bsonType": "int",
+                    "pattern": "^[0-9]{5}$",
+                    "description": "Código postal de 5 dígitos."
+                },
+                "DIRECCION_AUX": {
+                    "bsonType": "string",
+                    "description": "Campo auxiliar para la dirección."
+                },
+                "NDP": {
+                    "bsonType": "int",
+                    "description": "Código numérico o referencia."
+                },
+                "fechaInstalacion": {
+                    "bsonType": "date",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                    "description": "Fecha de instalación en formato YYYY-MM-DD."
+                },
+                "CODIGO_INTERNO": {
+                    "bsonType": "string",
+                    "description": "Código interno único del elemento."
+                },
+                "CONTRATO_COD": {
+                    "bsonType": "string",
+                    "description": "Código de contrato asociado."
+                },
+                "MODELO": {
+                    "bsonType": "string",
+                    "description": "Modelo del elemento."
+                },
+                "tipo_juego": {
+                    "bsonType": "string",
+                    "enum": ["infantiles", "deportivas", "mayores"],
+                    "description": "Tipo de juego o categoría."
+                },
+                "ACCESIBLE": {
+                    "bsonType": "bool",
+                    "description": "Indica si el elemento es accesible o no."
+                },
+                "IndicadorExposicion": {
+                    "bsonType": "string",
+                    "enum": ["bajo", "medio", "alto"],
+                    "description": "Indica si el elemento está expuesto."
+                },
+                "desgasteAcumulado": {
+                    "bsonType": "int",
+                    "description": "Nivel de desgaste acumulado."
+                },
+                "ultimaFechaMantenimiento": {
+                    "bsonType": "date",
+                    "description": "Fecha del último mantenimiento en formato ISODate."
+                }
+            }
+        }
+        })
+    collection = db['Juegos']
+    
+    # Convertir el DataFrame a una lista de diccionarios
+    registros_limpios_list = df_juegos.to_dict('records')
+    
+    # Insertar los registros en la colección
+    collection.insert_many(registros_limpios_list)
+    
+    print("Datos insertados en MongoDB con éxito.")
 
 # Ejecutar la función
 limpiar_datasets()

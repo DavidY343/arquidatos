@@ -137,7 +137,7 @@ mnt-00135,2023-12-17,preventivo,bueno,bueno,9177931,queja_usuario,comentario sob
 mnt-00136,2024-04-14,correctivo,regular,malo,5240867,preventivo,comentario sobre el mantenimiento 136
 mnt-00137,2024-01-01,preventivo,regular,bueno,58294,preventivo,comentario sobre el mantenimiento 137
 mnt-00138,2024-01-08,preventivo,malo,bueno,60060,preventivo,comentario sobre el mantenimiento 138
-mnt-00139,2024-06-14,preventivo,malo,regular,7792012,queja_usuario,mnt-00139-Comentarios-desconocido
+mnt-00139,2024-06-14,preventivo,malo,regular,7792012,queja_usuario,
 mnt-00140,2024-01-30,preventivo,regular,bueno,33703,preventivo,comentario sobre el mantenimiento 140
 mnt-00141,2023-11-16,correctivo,bueno,bueno,7802478,preventivo,comentario sobre el mantenimiento 141
 mnt-00142,2023-11-02,preventivo,regular,bueno,24922,queja_usuario,comentario sobre el mantenimiento 142
@@ -398,7 +398,7 @@ mnt-00396,2024-08-14,correctivo,malo,malo,7838839,queja_usuario,comentario sobre
 mnt-00397,2024-01-02,emergencia,regular,malo,9223732,queja_usuario,comentario sobre el mantenimiento 397
 mnt-00398,2024-03-11,emergencia,bueno,bueno,34038,queja_usuario,comentario sobre el mantenimiento 398
 mnt-00399,2024-05-29,emergencia,bueno,bueno,4738613,queja_usuario,comentario sobre el mantenimiento 399
-mnt-00400,2024-02-06,correctivo,malo,malo,9181012,mnt-00400-Tipo-desconocido,comentario sobre el mantenimiento 400
+mnt-00400,2024-02-06,correctivo,malo,malo,9181012,,comentario sobre el mantenimiento 400
 mnt-00401,2024-04-23,emergencia,bueno,bueno,5134826,preventivo,comentario sobre el mantenimiento 401
 mnt-00402,2024-04-28,emergencia,regular,bueno,451362,queja_usuario,comentario sobre el mantenimiento 402
 mnt-00403,2023-11-16,emergencia,regular,regular,4796700,queja_usuario,comentario sobre el mantenimiento 403
@@ -483,7 +483,7 @@ mnt-00481,2024-03-29,preventivo,regular,regular,58154,preventivo,comentario sobr
 mnt-00482,2024-05-25,correctivo,malo,regular,59760,preventivo,comentario sobre el mantenimiento 482
 mnt-00483,2023-10-22,correctivo,regular,malo,32870,queja_usuario,comentario sobre el mantenimiento 483
 mnt-00484,2024-05-30,correctivo,malo,malo,53048,preventivo,comentario sobre el mantenimiento 484
-mnt-00485,2024-08-23,emergencia,bueno,bueno,58137,preventivo,mnt-00485-Comentarios-desconocido
+mnt-00485,2024-08-23,emergencia,bueno,bueno,58137,preventivo,
 mnt-00486,2023-10-17,preventivo,regular,regular,9183118,preventivo,comentario sobre el mantenimiento 486
 mnt-00487,2024-07-30,correctivo,bueno,bueno,9391444,queja_usuario,comentario sobre el mantenimiento 487
 mnt-00488,2024-03-14,correctivo,bueno,bueno,34234,preventivo,comentario sobre el mantenimiento 488
@@ -549,7 +549,7 @@ mnt-00547,2024-02-02,emergencia,bueno,regular,21445,preventivo,comentario sobre 
 mnt-00548,2023-10-31,emergencia,regular,regular,3567957,preventivo,comentario sobre el mantenimiento 548
 mnt-00549,2023-11-29,preventivo,bueno,regular,8888427,preventivo,comentario sobre el mantenimiento 549
 mnt-00550,2024-08-19,correctivo,bueno,regular,7862151,preventivo,comentario sobre el mantenimiento 550
-mnt-00551,2024-08-10,emergencia,bueno,bueno,20076,preventivo,mnt-00551-Comentarios-desconocido
+mnt-00551,2024-08-10,emergencia,bueno,bueno,20076,preventivo,
 mnt-00552,2024-04-15,correctivo,malo,regular,20245,queja_usuario,comentario sobre el mantenimiento 552
 mnt-00553,2024-08-31,emergencia,bueno,bueno,9179386,preventivo,comentario sobre el mantenimiento 553
 mnt-00554,2024-08-06,preventivo,malo,bueno,9181849,preventivo,comentario sobre el mantenimiento 554
@@ -891,7 +891,7 @@ mnt-00889,2024-08-14,correctivo,regular,bueno,9264113,queja_usuario,comentario s
 mnt-00890,2024-02-24,correctivo,bueno,malo,5239111,queja_usuario,comentario sobre el mantenimiento 890
 mnt-00891,2024-02-17,preventivo,bueno,bueno,58632,preventivo,comentario sobre el mantenimiento 891
 mnt-00892,2024-01-28,preventivo,malo,malo,7927332,preventivo,comentario sobre el mantenimiento 892
-mnt-00893,2024-04-10,preventivo,regular,regular,33930,mnt-00893-Tipo-desconocido,comentario sobre el mantenimiento 893
+mnt-00893,2024-04-10,preventivo,regular,regular,33930,,comentario sobre el mantenimiento 893
 mnt-00894,2024-09-23,preventivo,regular,bueno,9510572,queja_usuario,comentario sobre el mantenimiento 894
 mnt-00895,2024-01-10,emergencia,malo,bueno,8804650,preventivo,comentario sobre el mantenimiento 895
 mnt-00896,2024-07-31,emergencia,bueno,bueno,5240847,preventivo,comentario sobre el mantenimiento 896
@@ -1181,7 +1181,7 @@ mnt-01179,2024-02-10,correctivo,regular,malo,35202,preventivo,comentario sobre e
 mnt-01180,2023-12-22,correctivo,regular,malo,22232,preventivo,comentario sobre el mantenimiento 1180
 mnt-01181,2024-05-20,preventivo,regular,regular,20088,preventivo,comentario sobre el mantenimiento 1181
 mnt-01182,2024-08-23,correctivo,malo,regular,60005,queja_usuario,comentario sobre el mantenimiento 1182
-mnt-01183,2023-12-30,correctivo,regular,regular,52906,preventivo,mnt-01183-Comentarios-desconocido
+mnt-01183,2023-12-30,correctivo,regular,regular,52906,preventivo,
 mnt-01184,2024-04-12,preventivo,bueno,bueno,5657912,preventivo,comentario sobre el mantenimiento 1184
 mnt-01185,2024-01-24,correctivo,malo,regular,9493024,queja_usuario,comentario sobre el mantenimiento 1185
 mnt-01186,2024-10-05,correctivo,bueno,bueno,9391783,queja_usuario,comentario sobre el mantenimiento 1186
@@ -1231,7 +1231,7 @@ mnt-01229,2024-10-02,correctivo,malo,bueno,20800,queja_usuario,comentario sobre 
 mnt-01230,2024-08-12,emergencia,malo,malo,7588206,queja_usuario,comentario sobre el mantenimiento 1230
 mnt-01231,2024-02-25,correctivo,bueno,bueno,52977,queja_usuario,comentario sobre el mantenimiento 1231
 mnt-01232,2024-02-24,emergencia,malo,malo,7126510,queja_usuario,comentario sobre el mantenimiento 1232
-mnt-01233,2024-06-16,correctivo,regular,regular,5240831,preventivo,mnt-01233-Comentarios-desconocido
+mnt-01233,2024-06-16,correctivo,regular,regular,5240831,preventivo,
 mnt-01234,2024-03-30,correctivo,malo,malo,5178977,queja_usuario,comentario sobre el mantenimiento 1234
 mnt-01235,2024-03-05,preventivo,malo,bueno,59774,preventivo,comentario sobre el mantenimiento 1235
 mnt-01236,2024-03-03,correctivo,malo,bueno,7859240,queja_usuario,comentario sobre el mantenimiento 1236
@@ -1302,7 +1302,7 @@ mnt-01300,2024-05-24,correctivo,regular,malo,5211848,queja_usuario,comentario so
 mnt-01301,2024-04-07,emergencia,regular,malo,6905545,queja_usuario,comentario sobre el mantenimiento 1301
 mnt-01302,2024-01-15,emergencia,regular,regular,33795,preventivo,comentario sobre el mantenimiento 1302
 mnt-01303,2024-12-07,preventivo,malo,bueno,19287,queja_usuario,comentario sobre el mantenimiento 1303
-mnt-01304,2023-11-18,preventivo,bueno,malo,52968,preventivo,mnt-01304-Comentarios-desconocido
+mnt-01304,2023-11-18,preventivo,bueno,malo,52968,preventivo,
 mnt-01305,2024-03-01,emergencia,regular,bueno,25753,queja_usuario,comentario sobre el mantenimiento 1305
 mnt-01306,2024-06-17,emergencia,bueno,bueno,5158852,preventivo,comentario sobre el mantenimiento 1306
 mnt-01307,2024-08-21,emergencia,malo,bueno,3581472,queja_usuario,comentario sobre el mantenimiento 1307
@@ -1314,7 +1314,7 @@ mnt-01312,2024-09-22,correctivo,regular,regular,20497,queja_usuario,comentario s
 mnt-01313,2024-09-02,emergencia,malo,regular,3531417,preventivo,comentario sobre el mantenimiento 1313
 mnt-01314,2024-07-13,correctivo,bueno,bueno,22045,queja_usuario,comentario sobre el mantenimiento 1314
 mnt-01315,2024-06-16,emergencia,malo,bueno,9407542,preventivo,comentario sobre el mantenimiento 1315
-mnt-01316,2024-06-20,preventivo,bueno,regular,34074,mnt-01316-Tipo-desconocido,comentario sobre el mantenimiento 1316
+mnt-01316,2024-06-20,preventivo,bueno,regular,34074,,comentario sobre el mantenimiento 1316
 mnt-01317,2024-09-18,correctivo,bueno,bueno,9177715,queja_usuario,comentario sobre el mantenimiento 1317
 mnt-01318,2024-03-27,correctivo,regular,malo,3849638,queja_usuario,comentario sobre el mantenimiento 1318
 mnt-01319,2023-12-27,correctivo,regular,regular,35213,preventivo,comentario sobre el mantenimiento 1319
@@ -1482,7 +1482,7 @@ mnt-01480,2024-04-04,preventivo,bueno,malo,21249,preventivo,comentario sobre el 
 mnt-01481,2023-12-19,emergencia,bueno,malo,5249153,preventivo,comentario sobre el mantenimiento 1481
 mnt-01482,2024-04-19,emergencia,regular,malo,59385,preventivo,comentario sobre el mantenimiento 1482
 mnt-01483,2023-04-12,emergencia,malo,malo,9495226,queja_usuario,comentario sobre el mantenimiento 1483
-mnt-01484,2024-05-16,emergencia,bueno,malo,60050,mnt-01484-Tipo-desconocido,comentario sobre el mantenimiento 1484
+mnt-01484,2024-05-16,emergencia,bueno,malo,60050,,comentario sobre el mantenimiento 1484
 mnt-01485,2024-07-25,preventivo,bueno,regular,7172911,preventivo,comentario sobre el mantenimiento 1485
 mnt-01486,2024-04-19,correctivo,malo,bueno,4940185,preventivo,comentario sobre el mantenimiento 1486
 mnt-01487,2024-02-21,preventivo,bueno,bueno,58262,preventivo,comentario sobre el mantenimiento 1487
@@ -1966,7 +1966,7 @@ mnt-01964,2024-08-15,correctivo,bueno,regular,4749961,preventivo,comentario sobr
 mnt-01965,2024-07-14,emergencia,bueno,malo,9433316,queja_usuario,comentario sobre el mantenimiento 1965
 mnt-01966,2024-02-01,emergencia,regular,malo,4987761,preventivo,comentario sobre el mantenimiento 1966
 mnt-01967,2024-07-27,correctivo,bueno,malo,3566301,queja_usuario,comentario sobre el mantenimiento 1967
-mnt-01968,2024-07-09,preventivo,malo,malo,59556,preventivo,mnt-01968-Comentarios-desconocido
+mnt-01968,2024-07-09,preventivo,malo,malo,59556,preventivo,
 mnt-01969,2024-05-07,emergencia,bueno,regular,21493,preventivo,comentario sobre el mantenimiento 1969
 mnt-01970,2024-08-08,emergencia,bueno,regular,7239579,queja_usuario,comentario sobre el mantenimiento 1970
 mnt-01971,2023-12-23,emergencia,bueno,regular,32536,preventivo,comentario sobre el mantenimiento 1971
@@ -2172,7 +2172,7 @@ mnt-02170,2024-06-07,preventivo,malo,regular,4992012,preventivo,comentario sobre
 mnt-02171,2024-01-16,emergencia,regular,malo,9294888,preventivo,comentario sobre el mantenimiento 2171
 mnt-02172,2023-10-20,correctivo,malo,malo,58404,queja_usuario,comentario sobre el mantenimiento 2172
 mnt-02173,2024-02-07,preventivo,regular,regular,5173934,queja_usuario,comentario sobre el mantenimiento 2173
-mnt-02174,2024-02-17,correctivo,malo,malo,8942823,mnt-02174-Tipo-desconocido,comentario sobre el mantenimiento 2174
+mnt-02174,2024-02-17,correctivo,malo,malo,8942823,,comentario sobre el mantenimiento 2174
 mnt-02175,2023-12-29,correctivo,malo,bueno,9424487,queja_usuario,comentario sobre el mantenimiento 2175
 mnt-02176,2023-12-30,correctivo,regular,bueno,34934,queja_usuario,comentario sobre el mantenimiento 2176
 mnt-02177,2024-08-11,preventivo,malo,bueno,5250491,queja_usuario,comentario sobre el mantenimiento 2177
@@ -2398,8 +2398,8 @@ mnt-02396,2023-11-09,correctivo,malo,regular,59006,queja_usuario,comentario sobr
 mnt-02397,2024-03-09,correctivo,malo,malo,3845315,queja_usuario,comentario sobre el mantenimiento 2397
 mnt-02398,2024-02-25,emergencia,malo,malo,3963370,preventivo,comentario sobre el mantenimiento 2398
 mnt-02399,2024-03-20,correctivo,bueno,bueno,9397993,queja_usuario,comentario sobre el mantenimiento 2399
-mnt-02400,2024-04-29,correctivo,malo,malo,21629,preventivo,mnt-02400-Comentarios-desconocido
-mnt-02401,2024-06-11,emergencia,bueno,malo,7896553,preventivo,mnt-02401-Comentarios-desconocido
+mnt-02400,2024-04-29,correctivo,malo,malo,21629,preventivo,
+mnt-02401,2024-06-11,emergencia,bueno,malo,7896553,preventivo,
 mnt-02402,2024-02-18,correctivo,malo,regular,34155,preventivo,comentario sobre el mantenimiento 2402
 mnt-02403,2024-01-23,correctivo,regular,regular,33546,preventivo,comentario sobre el mantenimiento 2403
 mnt-02404,2024-05-03,emergencia,malo,regular,7862172,preventivo,comentario sobre el mantenimiento 2404
@@ -2515,7 +2515,7 @@ mnt-02513,2024-03-20,correctivo,regular,bueno,34948,queja_usuario,comentario sob
 mnt-02514,2024-09-09,emergencia,bueno,bueno,5249150,preventivo,comentario sobre el mantenimiento 2514
 mnt-02515,2023-12-06,correctivo,malo,malo,5245394,queja_usuario,comentario sobre el mantenimiento 2515
 mnt-02516,2024-03-28,preventivo,malo,regular,9427006,preventivo,comentario sobre el mantenimiento 2516
-mnt-02517,2024-04-14,emergencia,bueno,bueno,9274927,queja_usuario,mnt-02517-Comentarios-desconocido
+mnt-02517,2024-04-14,emergencia,bueno,bueno,9274927,queja_usuario,
 mnt-02518,2024-06-06,emergencia,regular,regular,20084,preventivo,comentario sobre el mantenimiento 2518
 mnt-02519,2024-05-08,emergencia,regular,bueno,52884,queja_usuario,comentario sobre el mantenimiento 2519
 mnt-02520,2024-07-11,emergencia,bueno,bueno,20173,queja_usuario,comentario sobre el mantenimiento 2520
@@ -2866,7 +2866,7 @@ mnt-02864,2024-03-06,preventivo,malo,regular,7612595,preventivo,comentario sobre
 mnt-02865,2024-07-23,preventivo,malo,malo,7125634,preventivo,comentario sobre el mantenimiento 2865
 mnt-02866,2023-12-04,preventivo,malo,malo,4738619,queja_usuario,comentario sobre el mantenimiento 2866
 mnt-02867,2024-05-01,correctivo,malo,bueno,59538,queja_usuario,comentario sobre el mantenimiento 2867
-mnt-02868,2024-08-24,emergencia,regular,regular,60042,mnt-02868-Tipo-desconocido,comentario sobre el mantenimiento 2868
+mnt-02868,2024-08-24,emergencia,regular,regular,60042,,comentario sobre el mantenimiento 2868
 mnt-02869,2024-07-17,preventivo,bueno,malo,34039,preventivo,comentario sobre el mantenimiento 2869
 mnt-02870,2024-03-19,correctivo,regular,regular,59511,preventivo,comentario sobre el mantenimiento 2870
 mnt-02871,2024-06-01,emergencia,malo,malo,4794565,queja_usuario,comentario sobre el mantenimiento 2871
@@ -2954,7 +2954,7 @@ mnt-02952,2024-01-16,emergencia,malo,regular,57914,preventivo,comentario sobre e
 mnt-02953,2024-09-02,preventivo,bueno,bueno,18855,preventivo,comentario sobre el mantenimiento 2953
 mnt-02954,2024-10-06,correctivo,regular,malo,33319,queja_usuario,comentario sobre el mantenimiento 2954
 mnt-02955,2024-06-25,emergencia,regular,malo,9181883,preventivo,comentario sobre el mantenimiento 2955
-mnt-02956,2024-05-02,emergencia,regular,regular,4794256,mnt-02956-Tipo-desconocido,comentario sobre el mantenimiento 2956
+mnt-02956,2024-05-02,emergencia,regular,regular,4794256,,comentario sobre el mantenimiento 2956
 mnt-02957,2024-03-16,emergencia,regular,malo,9493016,preventivo,comentario sobre el mantenimiento 2957
 mnt-02958,2024-02-05,emergencia,malo,malo,9493123,queja_usuario,comentario sobre el mantenimiento 2958
 mnt-02959,2024-03-16,preventivo,regular,malo,7247896,preventivo,comentario sobre el mantenimiento 2959
@@ -3004,7 +3004,7 @@ mnt-03002,2023-12-19,preventivo,bueno,malo,59045,preventivo,comentario sobre el 
 mnt-03003,2024-06-23,emergencia,bueno,malo,5174731,preventivo,comentario sobre el mantenimiento 3003
 mnt-03004,2024-10-09,correctivo,bueno,malo,7840410,preventivo,comentario sobre el mantenimiento 3004
 mnt-03005,2024-07-18,correctivo,regular,malo,3568624,queja_usuario,comentario sobre el mantenimiento 3005
-mnt-03006,2023-10-17,preventivo,regular,bueno,33314,queja_usuario,mnt-03006-Comentarios-desconocido
+mnt-03006,2023-10-17,preventivo,regular,bueno,33314,queja_usuario,
 mnt-03007,2024-06-01,emergencia,bueno,regular,4987684,queja_usuario,comentario sobre el mantenimiento 3007
 mnt-03008,2023-12-06,preventivo,malo,regular,3580772,preventivo,comentario sobre el mantenimiento 3008
 mnt-03009,2023-10-24,emergencia,bueno,bueno,5658316,preventivo,comentario sobre el mantenimiento 3009
@@ -3183,7 +3183,7 @@ mnt-03181,2024-08-26,correctivo,malo,malo,20688,queja_usuario,comentario sobre e
 mnt-03182,2023-12-16,emergencia,bueno,bueno,7240136,preventivo,comentario sobre el mantenimiento 3182
 mnt-03183,2024-02-25,emergencia,regular,bueno,20791,preventivo,comentario sobre el mantenimiento 3183
 mnt-03184,2024-11-08,preventivo,bueno,malo,52977,preventivo,comentario sobre el mantenimiento 3184
-mnt-03185,2024-05-27,emergencia,bueno,bueno,7107108,preventivo,mnt-03185-Comentarios-desconocido
+mnt-03185,2024-05-27,emergencia,bueno,bueno,7107108,preventivo,
 mnt-03186,2024-06-26,emergencia,bueno,malo,33727,preventivo,comentario sobre el mantenimiento 3186
 mnt-03187,2024-08-13,emergencia,malo,regular,21006,queja_usuario,comentario sobre el mantenimiento 3187
 mnt-03188,2023-12-02,emergencia,regular,regular,9294589,queja_usuario,comentario sobre el mantenimiento 3188
@@ -3485,7 +3485,7 @@ mnt-03483,2024-11-10,emergencia,malo,malo,20243,preventivo,comentario sobre el m
 mnt-03484,2024-06-09,emergencia,bueno,bueno,7887285,queja_usuario,comentario sobre el mantenimiento 3484
 mnt-03485,2024-05-04,correctivo,bueno,bueno,9290998,queja_usuario,comentario sobre el mantenimiento 3485
 mnt-03486,2024-05-03,correctivo,malo,regular,5211205,queja_usuario,comentario sobre el mantenimiento 3486
-mnt-03487,2024-09-27,correctivo,regular,malo,5173930,preventivo,mnt-03487-Comentarios-desconocido
+mnt-03487,2024-09-27,correctivo,regular,malo,5173930,preventivo,
 mnt-03488,2024-09-27,correctivo,regular,malo,5178821,preventivo,comentario sobre el mantenimiento 3488
 mnt-03489,2024-04-26,correctivo,malo,bueno,9220321,queja_usuario,comentario sobre el mantenimiento 3489
 mnt-03490,2024-01-06,preventivo,regular,malo,5178809,queja_usuario,comentario sobre el mantenimiento 3490
@@ -3640,7 +3640,7 @@ mnt-03638,2024-03-23,emergencia,regular,bueno,19295,preventivo,comentario sobre 
 mnt-03639,2024-08-05,preventivo,malo,regular,19354,preventivo,comentario sobre el mantenimiento 3639
 mnt-03640,2024-07-11,preventivo,bueno,bueno,32847,preventivo,comentario sobre el mantenimiento 3640
 mnt-03641,2024-01-17,preventivo,malo,bueno,25684,queja_usuario,comentario sobre el mantenimiento 3641
-mnt-03642,2024-10-10,preventivo,regular,bueno,19926,mnt-03642-Tipo-desconocido,comentario sobre el mantenimiento 3642
+mnt-03642,2024-10-10,preventivo,regular,bueno,19926,,comentario sobre el mantenimiento 3642
 mnt-03643,2024-02-05,correctivo,bueno,bueno,20796,queja_usuario,comentario sobre el mantenimiento 3643
 mnt-03644,2023-12-05,emergencia,malo,bueno,5659747,preventivo,comentario sobre el mantenimiento 3644
 mnt-03645,2024-01-05,preventivo,malo,malo,9294736,queja_usuario,comentario sobre el mantenimiento 3645
@@ -3851,7 +3851,7 @@ mnt-03849,2024-07-13,correctivo,malo,regular,5658065,preventivo,comentario sobre
 mnt-03850,2023-12-13,emergencia,malo,regular,21409,preventivo,comentario sobre el mantenimiento 3850
 mnt-03851,2024-01-20,emergencia,regular,malo,33190,preventivo,comentario sobre el mantenimiento 3851
 mnt-03852,2024-08-18,preventivo,regular,regular,5658582,queja_usuario,comentario sobre el mantenimiento 3852
-mnt-03853,2024-03-16,preventivo,regular,bueno,22168,mnt-03853-Tipo-desconocido,comentario sobre el mantenimiento 3853
+mnt-03853,2024-03-16,preventivo,regular,bueno,22168,,comentario sobre el mantenimiento 3853
 mnt-03854,2024-10-02,emergencia,regular,bueno,34105,queja_usuario,comentario sobre el mantenimiento 3854
 mnt-03855,2024-05-01,emergencia,malo,bueno,53213,preventivo,comentario sobre el mantenimiento 3855
 mnt-03856,2023-12-27,preventivo,malo,malo,4961105,preventivo,comentario sobre el mantenimiento 3856
@@ -3860,7 +3860,7 @@ mnt-03858,2024-01-13,correctivo,malo,regular,19483,preventivo,comentario sobre e
 mnt-03859,2024-04-16,emergencia,bueno,malo,6878778,preventivo,comentario sobre el mantenimiento 3859
 mnt-03860,2024-05-23,correctivo,malo,regular,22262,preventivo,comentario sobre el mantenimiento 3860
 mnt-03861,2024-03-29,correctivo,bueno,regular,8888417,queja_usuario,comentario sobre el mantenimiento 3861
-mnt-03862,2024-02-16,correctivo,regular,malo,9182072,preventivo,mnt-03862-Comentarios-desconocido
+mnt-03862,2024-02-16,correctivo,regular,malo,9182072,preventivo,
 mnt-03863,2024-09-10,preventivo,regular,malo,35006,preventivo,comentario sobre el mantenimiento 3863
 mnt-03864,2024-04-28,emergencia,regular,malo,9427405,queja_usuario,comentario sobre el mantenimiento 3864
 mnt-03865,2024-06-07,emergencia,regular,malo,3580681,preventivo,comentario sobre el mantenimiento 3865
@@ -4012,7 +4012,7 @@ mnt-04010,2024-09-18,emergencia,malo,bueno,22326,queja_usuario,comentario sobre 
 mnt-04011,2024-08-22,correctivo,malo,bueno,5252821,preventivo,comentario sobre el mantenimiento 4011
 mnt-04012,2024-05-15,correctivo,bueno,regular,4730875,preventivo,comentario sobre el mantenimiento 4012
 mnt-04013,2023-10-17,preventivo,malo,malo,59768,preventivo,comentario sobre el mantenimiento 4013
-mnt-04014,2023-12-12,correctivo,malo,malo,5601926,mnt-04014-Tipo-desconocido,comentario sobre el mantenimiento 4014
+mnt-04014,2023-12-12,correctivo,malo,malo,5601926,,comentario sobre el mantenimiento 4014
 mnt-04015,2024-05-09,emergencia,malo,regular,5240964,preventivo,comentario sobre el mantenimiento 4015
 mnt-04016,2023-12-24,emergencia,malo,bueno,58781,queja_usuario,comentario sobre el mantenimiento 4016
 mnt-04017,2024-01-02,correctivo,regular,malo,34765,preventivo,comentario sobre el mantenimiento 4017
@@ -4375,7 +4375,7 @@ mnt-04373,2024-08-17,correctivo,bueno,bueno,5658917,preventivo,comentario sobre 
 mnt-04374,2024-07-14,preventivo,bueno,regular,7889432,queja_usuario,comentario sobre el mantenimiento 4374
 mnt-04375,2024-03-24,correctivo,malo,bueno,25655,queja_usuario,comentario sobre el mantenimiento 4375
 mnt-04376,2024-05-23,correctivo,regular,regular,5659197,queja_usuario,comentario sobre el mantenimiento 4376
-mnt-04377,2024-07-05,preventivo,regular,bueno,9223715,preventivo,mnt-04377-Comentarios-desconocido
+mnt-04377,2024-07-05,preventivo,regular,bueno,9223715,preventivo,
 mnt-04378,2024-09-09,emergencia,regular,bueno,59518,queja_usuario,comentario sobre el mantenimiento 4378
 mnt-04379,2024-03-26,correctivo,regular,bueno,24763,preventivo,comentario sobre el mantenimiento 4379
 mnt-04380,2024-02-16,correctivo,bueno,bueno,35039,preventivo,comentario sobre el mantenimiento 4380
@@ -5090,7 +5090,7 @@ mnt-05088,2023-12-24,correctivo,bueno,bueno,32545,queja_usuario,comentario sobre
 mnt-05089,2024-12-07,correctivo,regular,bueno,9050885,queja_usuario,comentario sobre el mantenimiento 5089
 mnt-05090,2024-05-30,preventivo,malo,regular,19435,preventivo,comentario sobre el mantenimiento 5090
 mnt-05091,2023-11-17,emergencia,regular,malo,21023,queja_usuario,comentario sobre el mantenimiento 5091
-mnt-05092,2024-04-05,emergencia,bueno,bueno,7840615,queja_usuario,mnt-05092-Comentarios-desconocido
+mnt-05092,2024-04-05,emergencia,bueno,bueno,7840615,queja_usuario,
 mnt-05093,2024-03-04,emergencia,malo,regular,9256437,preventivo,comentario sobre el mantenimiento 5093
 mnt-05094,2024-06-03,preventivo,bueno,bueno,53086,queja_usuario,comentario sobre el mantenimiento 5094
 mnt-05095,2023-12-11,preventivo,malo,regular,20402,preventivo,comentario sobre el mantenimiento 5095
@@ -5321,7 +5321,7 @@ mnt-05319,2024-02-04,emergencia,malo,regular,21489,preventivo,comentario sobre e
 mnt-05320,2024-04-21,emergencia,regular,bueno,58933,preventivo,comentario sobre el mantenimiento 5320
 mnt-05321,2024-01-27,correctivo,malo,bueno,58331,queja_usuario,comentario sobre el mantenimiento 5321
 mnt-05322,2023-11-03,correctivo,malo,bueno,3568952,queja_usuario,comentario sobre el mantenimiento 5322
-mnt-05323,2024-09-01,emergencia,regular,regular,7526983,mnt-05323-Tipo-desconocido,comentario sobre el mantenimiento 5323
+mnt-05323,2024-09-01,emergencia,regular,regular,7526983,,comentario sobre el mantenimiento 5323
 mnt-05324,2024-05-09,correctivo,regular,regular,20420,preventivo,comentario sobre el mantenimiento 5324
 mnt-05325,2024-09-12,emergencia,malo,malo,9284759,preventivo,comentario sobre el mantenimiento 5325
 mnt-05326,2024-07-31,correctivo,malo,bueno,57962,queja_usuario,comentario sobre el mantenimiento 5326
@@ -5356,7 +5356,7 @@ mnt-05354,2024-07-04,emergencia,regular,malo,59138,preventivo,comentario sobre e
 mnt-05355,2024-10-05,preventivo,regular,regular,58218,preventivo,comentario sobre el mantenimiento 5355
 mnt-05356,2024-05-02,preventivo,bueno,regular,9288508,queja_usuario,comentario sobre el mantenimiento 5356
 mnt-05357,2024-03-10,preventivo,bueno,bueno,59488,queja_usuario,comentario sobre el mantenimiento 5357
-mnt-05358,2024-06-16,emergencia,bueno,regular,7144285,queja_usuario,mnt-05358-Comentarios-desconocido
+mnt-05358,2024-06-16,emergencia,bueno,regular,7144285,queja_usuario,
 mnt-05359,2024-03-10,preventivo,bueno,malo,451324,preventivo,comentario sobre el mantenimiento 5359
 mnt-05360,2024-05-11,emergencia,bueno,regular,25087,queja_usuario,comentario sobre el mantenimiento 5360
 mnt-05361,2024-06-01,emergencia,bueno,malo,53081,preventivo,comentario sobre el mantenimiento 5361
@@ -5549,7 +5549,7 @@ mnt-05547,2024-08-01,preventivo,regular,malo,3573456,preventivo,comentario sobre
 mnt-05548,2024-01-09,correctivo,bueno,regular,22485,queja_usuario,comentario sobre el mantenimiento 5548
 mnt-05549,2024-05-09,correctivo,regular,regular,58025,queja_usuario,comentario sobre el mantenimiento 5549
 mnt-05550,2023-11-30,preventivo,bueno,malo,33950,preventivo,comentario sobre el mantenimiento 5550
-mnt-05551,2023-12-26,preventivo,regular,malo,5174745,queja_usuario,mnt-05551-Comentarios-desconocido
+mnt-05551,2023-12-26,preventivo,regular,malo,5174745,queja_usuario,
 mnt-05552,2024-10-06,correctivo,malo,malo,3569232,queja_usuario,comentario sobre el mantenimiento 5552
 mnt-05553,2024-01-24,preventivo,bueno,bueno,20762,queja_usuario,comentario sobre el mantenimiento 5553
 mnt-05554,2024-10-03,emergencia,malo,bueno,5658823,queja_usuario,comentario sobre el mantenimiento 5554
@@ -5829,7 +5829,7 @@ mnt-05827,2024-03-26,preventivo,bueno,regular,24792,queja_usuario,comentario sob
 mnt-05828,2024-09-04,correctivo,regular,malo,20005,queja_usuario,comentario sobre el mantenimiento 5828
 mnt-05829,2023-11-09,correctivo,bueno,bueno,22202,preventivo,comentario sobre el mantenimiento 5829
 mnt-05830,2024-03-04,emergencia,malo,regular,34118,queja_usuario,comentario sobre el mantenimiento 5830
-mnt-05831,2024-01-11,emergencia,bueno,malo,19479,queja_usuario,mnt-05831-Comentarios-desconocido
+mnt-05831,2024-01-11,emergencia,bueno,malo,19479,queja_usuario,
 mnt-05832,2024-07-21,emergencia,malo,bueno,7898756,preventivo,comentario sobre el mantenimiento 5832
 mnt-05833,2023-11-06,preventivo,malo,regular,58716,queja_usuario,comentario sobre el mantenimiento 5833
 mnt-05834,2024-11-06,correctivo,bueno,bueno,9157640,queja_usuario,comentario sobre el mantenimiento 5834
@@ -6132,7 +6132,7 @@ mnt-06130,2024-03-10,correctivo,regular,regular,5158891,queja_usuario,comentario
 mnt-06131,2023-12-19,preventivo,regular,malo,4732018,preventivo,comentario sobre el mantenimiento 6131
 mnt-06132,2024-07-17,preventivo,bueno,regular,8943961,preventivo,comentario sobre el mantenimiento 6132
 mnt-06133,2024-06-24,emergencia,regular,malo,22513,preventivo,comentario sobre el mantenimiento 6133
-mnt-06134,2023-11-17,emergencia,bueno,bueno,3530788,preventivo,mnt-06134-Comentarios-desconocido
+mnt-06134,2023-11-17,emergencia,bueno,bueno,3530788,preventivo,
 mnt-06135,2023-11-04,emergencia,bueno,malo,4737964,preventivo,comentario sobre el mantenimiento 6135
 mnt-06136,2024-05-10,preventivo,malo,malo,60012,queja_usuario,comentario sobre el mantenimiento 6136
 mnt-06137,2024-01-25,correctivo,bueno,bueno,7903920,queja_usuario,comentario sobre el mantenimiento 6137
@@ -6568,7 +6568,7 @@ mnt-06566,2024-07-03,preventivo,regular,bueno,9183453,preventivo,comentario sobr
 mnt-06567,2023-12-31,preventivo,bueno,regular,7870216,queja_usuario,comentario sobre el mantenimiento 6567
 mnt-06568,2024-03-24,preventivo,regular,regular,33678,queja_usuario,comentario sobre el mantenimiento 6568
 mnt-06569,2023-06-12,correctivo,bueno,bueno,8909783,preventivo,comentario sobre el mantenimiento 6569
-mnt-06570,2024-09-22,emergencia,malo,regular,21644,preventivo,mnt-06570-Comentarios-desconocido
+mnt-06570,2024-09-22,emergencia,malo,regular,21644,preventivo,
 mnt-06571,2024-05-24,correctivo,bueno,bueno,9156176,queja_usuario,comentario sobre el mantenimiento 6571
 mnt-06572,2024-09-18,preventivo,malo,bueno,32970,queja_usuario,comentario sobre el mantenimiento 6572
 mnt-06573,2024-03-29,emergencia,regular,bueno,58925,preventivo,comentario sobre el mantenimiento 6573
@@ -6634,7 +6634,7 @@ mnt-06632,2024-01-24,preventivo,bueno,regular,8804541,queja_usuario,comentario s
 mnt-06633,2023-10-25,correctivo,regular,regular,24915,queja_usuario,comentario sobre el mantenimiento 6633
 mnt-06634,2024-01-04,emergencia,bueno,regular,3573390,queja_usuario,comentario sobre el mantenimiento 6634
 mnt-06635,2023-10-11,emergencia,bueno,regular,9048978,preventivo,comentario sobre el mantenimiento 6635
-mnt-06636,2024-10-08,preventivo,bueno,regular,5220909,preventivo,mnt-06636-Comentarios-desconocido
+mnt-06636,2024-10-08,preventivo,bueno,regular,5220909,preventivo,
 mnt-06637,2024-04-06,preventivo,bueno,bueno,3566878,queja_usuario,comentario sobre el mantenimiento 6637
 mnt-06638,2024-04-22,preventivo,regular,malo,33426,queja_usuario,comentario sobre el mantenimiento 6638
 mnt-06639,2024-02-27,correctivo,regular,regular,8933982,preventivo,comentario sobre el mantenimiento 6639
@@ -6748,7 +6748,7 @@ mnt-06746,2023-12-11,emergencia,regular,malo,32897,queja_usuario,comentario sobr
 mnt-06747,2024-06-15,correctivo,regular,bueno,9288665,queja_usuario,comentario sobre el mantenimiento 6747
 mnt-06748,2024-05-13,preventivo,bueno,malo,23840,queja_usuario,comentario sobre el mantenimiento 6748
 mnt-06749,2023-11-18,preventivo,bueno,malo,9494956,preventivo,comentario sobre el mantenimiento 6749
-mnt-06750,2023-10-29,correctivo,malo,regular,59580,queja_usuario,mnt-06750-Comentarios-desconocido
+mnt-06750,2023-10-29,correctivo,malo,regular,59580,queja_usuario,
 mnt-06751,2024-01-14,emergencia,regular,malo,24994,preventivo,comentario sobre el mantenimiento 6751
 mnt-06752,2023-12-26,correctivo,regular,regular,5492443,queja_usuario,comentario sobre el mantenimiento 6752
 mnt-06753,2024-10-09,preventivo,malo,bueno,34167,queja_usuario,comentario sobre el mantenimiento 6753
@@ -6887,7 +6887,7 @@ mnt-06885,2024-04-28,emergencia,regular,regular,7612211,queja_usuario,comentario
 mnt-06886,2024-10-07,correctivo,malo,regular,8909783,queja_usuario,comentario sobre el mantenimiento 6886
 mnt-06887,2024-04-21,emergencia,regular,malo,9167247,preventivo,comentario sobre el mantenimiento 6887
 mnt-06888,2024-02-07,emergencia,bueno,malo,19384,preventivo,comentario sobre el mantenimiento 6888
-mnt-06889,2024-11-04,correctivo,regular,bueno,7240120,mnt-06889-Tipo-desconocido,comentario sobre el mantenimiento 6889
+mnt-06889,2024-11-04,correctivo,regular,bueno,7240120,,comentario sobre el mantenimiento 6889
 mnt-06890,2024-08-29,preventivo,malo,malo,59668,preventivo,comentario sobre el mantenimiento 6890
 mnt-06891,2024-03-13,emergencia,bueno,bueno,7177139,preventivo,comentario sobre el mantenimiento 6891
 mnt-06892,2024-06-20,preventivo,regular,bueno,4749979,queja_usuario,comentario sobre el mantenimiento 6892
@@ -7453,7 +7453,7 @@ mnt-07451,2024-01-08,correctivo,malo,regular,7603260,preventivo,comentario sobre
 mnt-07452,2024-06-14,preventivo,regular,bueno,9289326,preventivo,comentario sobre el mantenimiento 7452
 mnt-07453,2023-11-12,emergencia,bueno,bueno,34995,preventivo,comentario sobre el mantenimiento 7453
 mnt-07454,2024-07-26,correctivo,regular,regular,7591685,queja_usuario,comentario sobre el mantenimiento 7454
-mnt-07455,2024-03-16,preventivo,regular,malo,7928137,mnt-07455-Tipo-desconocido,comentario sobre el mantenimiento 7455
+mnt-07455,2024-03-16,preventivo,regular,malo,7928137,,comentario sobre el mantenimiento 7455
 mnt-07456,2024-02-17,correctivo,bueno,malo,3580348,queja_usuario,comentario sobre el mantenimiento 7456
 mnt-07457,2024-03-04,emergencia,malo,malo,21843,queja_usuario,comentario sobre el mantenimiento 7457
 mnt-07458,2024-03-13,preventivo,malo,bueno,9192945,preventivo,comentario sobre el mantenimiento 7458
@@ -7613,7 +7613,7 @@ mnt-07611,2024-07-23,preventivo,bueno,bueno,9397685,queja_usuario,comentario sob
 mnt-07612,2024-09-09,emergencia,regular,bueno,25544,queja_usuario,comentario sobre el mantenimiento 7612
 mnt-07613,2024-05-04,preventivo,bueno,regular,59173,preventivo,comentario sobre el mantenimiento 7613
 mnt-07614,2024-04-27,correctivo,malo,bueno,9182189,preventivo,comentario sobre el mantenimiento 7614
-mnt-07615,2023-11-09,emergencia,bueno,regular,18712,preventivo,mnt-07615-Comentarios-desconocido
+mnt-07615,2023-11-09,emergencia,bueno,regular,18712,preventivo,
 mnt-07616,2024-03-26,preventivo,regular,malo,58295,queja_usuario,comentario sobre el mantenimiento 7616
 mnt-07617,2023-11-07,emergencia,bueno,malo,7794490,preventivo,comentario sobre el mantenimiento 7617
 mnt-07618,2023-11-07,correctivo,bueno,malo,33201,preventivo,comentario sobre el mantenimiento 7618
@@ -7867,14 +7867,14 @@ mnt-07865,2023-11-15,correctivo,regular,malo,4988281,preventivo,comentario sobre
 mnt-07866,2023-10-19,correctivo,malo,regular,9223976,preventivo,comentario sobre el mantenimiento 7866
 mnt-07867,2024-09-12,correctivo,regular,bueno,58748,queja_usuario,comentario sobre el mantenimiento 7867
 mnt-07868,2024-05-17,preventivo,regular,regular,21359,preventivo,comentario sobre el mantenimiento 7868
-mnt-07869,2024-09-01,correctivo,bueno,malo,21345,mnt-07869-Tipo-desconocido,comentario sobre el mantenimiento 7869
+mnt-07869,2024-09-01,correctivo,bueno,malo,21345,,comentario sobre el mantenimiento 7869
 mnt-07870,2024-06-11,preventivo,regular,bueno,22494,preventivo,comentario sobre el mantenimiento 7870
 mnt-07871,2024-07-08,correctivo,malo,bueno,4984743,preventivo,comentario sobre el mantenimiento 7871
 mnt-07872,2024-02-21,correctivo,regular,malo,59296,preventivo,comentario sobre el mantenimiento 7872
 mnt-07873,2024-04-05,emergencia,regular,regular,4992823,queja_usuario,comentario sobre el mantenimiento 7873
 mnt-07874,2024-05-18,correctivo,malo,bueno,7128414,queja_usuario,comentario sobre el mantenimiento 7874
 mnt-07875,2024-06-19,correctivo,bueno,bueno,33964,queja_usuario,comentario sobre el mantenimiento 7875
-mnt-07876,2024-09-27,emergencia,bueno,regular,33186,preventivo,mnt-07876-Comentarios-desconocido
+mnt-07876,2024-09-27,emergencia,bueno,regular,33186,preventivo,
 mnt-07877,2024-05-03,emergencia,regular,bueno,59492,queja_usuario,comentario sobre el mantenimiento 7877
 mnt-07878,2024-04-30,preventivo,bueno,malo,7889435,preventivo,comentario sobre el mantenimiento 7878
 mnt-07879,2023-12-02,preventivo,malo,malo,20517,preventivo,comentario sobre el mantenimiento 7879
@@ -8120,7 +8120,7 @@ mnt-08118,2024-09-21,correctivo,regular,bueno,7928433,queja_usuario,comentario s
 mnt-08119,2023-11-28,correctivo,bueno,regular,5209100,preventivo,comentario sobre el mantenimiento 8119
 mnt-08120,2024-09-21,emergencia,malo,malo,18741,preventivo,comentario sobre el mantenimiento 8120
 mnt-08121,2024-02-22,emergencia,regular,bueno,7890623,preventivo,comentario sobre el mantenimiento 8121
-mnt-08122,2024-05-08,preventivo,bueno,bueno,22522,preventivo,mnt-08122-Comentarios-desconocido
+mnt-08122,2024-05-08,preventivo,bueno,bueno,22522,preventivo,
 mnt-08123,2024-09-23,emergencia,regular,bueno,9294731,preventivo,comentario sobre el mantenimiento 8123
 mnt-08124,2024-01-29,preventivo,regular,bueno,9223719,preventivo,comentario sobre el mantenimiento 8124
 mnt-08125,2024-04-30,preventivo,regular,bueno,3531007,preventivo,comentario sobre el mantenimiento 8125
@@ -8242,7 +8242,7 @@ mnt-08240,2024-03-25,preventivo,malo,bueno,24753,queja_usuario,comentario sobre 
 mnt-08241,2024-01-19,preventivo,bueno,malo,3581469,preventivo,comentario sobre el mantenimiento 8241
 mnt-08242,2024-10-01,preventivo,bueno,malo,7928123,queja_usuario,comentario sobre el mantenimiento 8242
 mnt-08243,2024-06-17,emergencia,regular,regular,7741935,preventivo,comentario sobre el mantenimiento 8243
-mnt-08244,2024-02-28,correctivo,regular,regular,20180,preventivo,mnt-08244-Comentarios-desconocido
+mnt-08244,2024-02-28,correctivo,regular,regular,20180,preventivo,
 mnt-08245,2024-06-04,emergencia,bueno,regular,9497947,queja_usuario,comentario sobre el mantenimiento 8245
 mnt-08246,2024-01-26,emergencia,bueno,regular,9225693,preventivo,comentario sobre el mantenimiento 8246
 mnt-08247,2024-04-30,preventivo,regular,regular,33157,queja_usuario,comentario sobre el mantenimiento 8247
@@ -8511,7 +8511,7 @@ mnt-08509,2024-09-18,correctivo,bueno,regular,5252815,queja_usuario,comentario s
 mnt-08510,2024-07-06,correctivo,regular,regular,22383,queja_usuario,comentario sobre el mantenimiento 8510
 mnt-08511,2024-04-15,emergencia,regular,malo,5228966,preventivo,comentario sobre el mantenimiento 8511
 mnt-08512,2024-04-27,emergencia,malo,malo,9291635,preventivo,comentario sobre el mantenimiento 8512
-mnt-08513,2024-08-19,preventivo,malo,malo,35005,preventivo,mnt-08513-Comentarios-desconocido
+mnt-08513,2024-08-19,preventivo,malo,malo,35005,preventivo,
 mnt-08514,2023-12-28,correctivo,regular,regular,34174,queja_usuario,comentario sobre el mantenimiento 8514
 mnt-08515,2024-07-09,preventivo,regular,bueno,24920,preventivo,comentario sobre el mantenimiento 8515
 mnt-08516,2024-07-21,emergencia,malo,regular,33592,queja_usuario,comentario sobre el mantenimiento 8516
@@ -8532,7 +8532,7 @@ mnt-08530,2024-08-10,emergencia,bueno,regular,7862461,queja_usuario,comentario s
 mnt-08531,2024-08-06,preventivo,regular,regular,5158894,preventivo,comentario sobre el mantenimiento 8531
 mnt-08532,2024-05-03,preventivo,bueno,bueno,59414,preventivo,comentario sobre el mantenimiento 8532
 mnt-08533,2024-05-20,correctivo,regular,malo,9407941,queja_usuario,comentario sobre el mantenimiento 8533
-mnt-08534,2024-09-08,correctivo,regular,regular,5239325,preventivo,mnt-08534-Comentarios-desconocido
+mnt-08534,2024-09-08,correctivo,regular,regular,5239325,preventivo,
 mnt-08535,2024-09-04,correctivo,regular,malo,59898,preventivo,comentario sobre el mantenimiento 8535
 mnt-08536,2023-12-24,preventivo,malo,regular,3568702,preventivo,comentario sobre el mantenimiento 8536
 mnt-08537,2024-10-13,correctivo,malo,malo,5218684,queja_usuario,comentario sobre el mantenimiento 8537
@@ -8600,7 +8600,7 @@ mnt-08598,2023-12-12,correctivo,bueno,regular,34091,queja_usuario,comentario sob
 mnt-08599,2024-02-15,emergencia,regular,regular,59614,preventivo,comentario sobre el mantenimiento 8599
 mnt-08600,2024-03-18,preventivo,regular,regular,22548,queja_usuario,comentario sobre el mantenimiento 8600
 mnt-08601,2024-07-23,emergencia,bueno,malo,5658287,preventivo,comentario sobre el mantenimiento 8601
-mnt-08602,2024-07-27,preventivo,bueno,bueno,24911,mnt-08602-Tipo-desconocido,comentario sobre el mantenimiento 8602
+mnt-08602,2024-07-27,preventivo,bueno,bueno,24911,,comentario sobre el mantenimiento 8602
 mnt-08603,2024-03-06,correctivo,bueno,bueno,9272930,queja_usuario,comentario sobre el mantenimiento 8603
 mnt-08604,2024-08-11,emergencia,bueno,malo,3576572,queja_usuario,comentario sobre el mantenimiento 8604
 mnt-08605,2024-09-13,emergencia,regular,regular,33059,queja_usuario,comentario sobre el mantenimiento 8605
@@ -8963,7 +8963,7 @@ mnt-08961,2024-09-25,emergencia,malo,bueno,7144279,queja_usuario,comentario sobr
 mnt-08962,2024-03-22,preventivo,regular,bueno,53048,queja_usuario,comentario sobre el mantenimiento 8962
 mnt-08963,2024-09-13,preventivo,regular,regular,21710,queja_usuario,comentario sobre el mantenimiento 8963
 mnt-08964,2024-08-13,correctivo,regular,malo,3575767,queja_usuario,comentario sobre el mantenimiento 8964
-mnt-08965,2024-03-24,correctivo,regular,malo,5211177,mnt-08965-Tipo-desconocido,comentario sobre el mantenimiento 8965
+mnt-08965,2024-03-24,correctivo,regular,malo,5211177,,comentario sobre el mantenimiento 8965
 mnt-08966,2024-06-18,correctivo,bueno,regular,9181847,queja_usuario,comentario sobre el mantenimiento 8966
 mnt-08967,2023-10-28,emergencia,regular,bueno,3963578,queja_usuario,comentario sobre el mantenimiento 8967
 mnt-08968,2024-02-18,correctivo,bueno,bueno,4949954,preventivo,comentario sobre el mantenimiento 8968
@@ -9064,7 +9064,7 @@ mnt-09062,2024-03-20,emergencia,malo,regular,9387196,preventivo,comentario sobre
 mnt-09063,2024-07-19,preventivo,malo,bueno,20754,queja_usuario,comentario sobre el mantenimiento 9063
 mnt-09064,2023-11-27,correctivo,malo,malo,3576570,preventivo,comentario sobre el mantenimiento 9064
 mnt-09065,2024-10-05,emergencia,regular,regular,7546129,preventivo,comentario sobre el mantenimiento 9065
-mnt-09066,2023-12-07,emergencia,bueno,regular,5241046,queja_usuario,mnt-09066-Comentarios-desconocido
+mnt-09066,2023-12-07,emergencia,bueno,regular,5241046,queja_usuario,
 mnt-09067,2024-07-06,preventivo,malo,bueno,21220,queja_usuario,comentario sobre el mantenimiento 9067
 mnt-09068,2024-04-13,preventivo,malo,regular,33311,queja_usuario,comentario sobre el mantenimiento 9068
 mnt-09069,2024-02-25,preventivo,bueno,regular,22072,preventivo,comentario sobre el mantenimiento 9069
@@ -9145,7 +9145,7 @@ mnt-09143,2024-03-21,emergencia,regular,bueno,58873,preventivo,comentario sobre 
 mnt-09144,2023-11-05,preventivo,malo,malo,9288656,queja_usuario,comentario sobre el mantenimiento 9144
 mnt-09145,2024-10-12,emergencia,regular,malo,6878893,preventivo,comentario sobre el mantenimiento 9145
 mnt-09146,2024-08-20,preventivo,regular,malo,59314,preventivo,comentario sobre el mantenimiento 9146
-mnt-09147,2024-03-10,correctivo,regular,regular,4794567,preventivo,mnt-09147-Comentarios-desconocido
+mnt-09147,2024-03-10,correctivo,regular,regular,4794567,preventivo,
 mnt-09148,2024-09-19,emergencia,bueno,regular,9260078,preventivo,comentario sobre el mantenimiento 9148
 mnt-09149,2024-10-06,correctivo,malo,malo,7897721,queja_usuario,comentario sobre el mantenimiento 9149
 mnt-09150,2024-03-19,correctivo,bueno,regular,5220726,queja_usuario,comentario sobre el mantenimiento 9150
@@ -9243,7 +9243,7 @@ mnt-09241,2023-04-12,correctivo,regular,malo,4704505,preventivo,comentario sobre
 mnt-09242,2023-11-06,correctivo,bueno,regular,4961109,preventivo,comentario sobre el mantenimiento 9242
 mnt-09243,2023-12-16,emergencia,malo,bueno,57987,queja_usuario,comentario sobre el mantenimiento 9243
 mnt-09244,2024-02-14,preventivo,malo,bueno,25284,preventivo,comentario sobre el mantenimiento 9244
-mnt-09245,2023-12-28,preventivo,regular,malo,7741332,queja_usuario,mnt-09245-Comentarios-desconocido
+mnt-09245,2023-12-28,preventivo,regular,malo,7741332,queja_usuario,
 mnt-09246,2024-08-16,preventivo,bueno,malo,9276785,preventivo,comentario sobre el mantenimiento 9246
 mnt-09247,2024-05-13,preventivo,regular,malo,4730864,preventivo,comentario sobre el mantenimiento 9247
 mnt-09248,2023-12-23,correctivo,bueno,bueno,9497309,queja_usuario,comentario sobre el mantenimiento 9248
@@ -9514,7 +9514,7 @@ mnt-09512,2023-10-26,emergencia,malo,malo,7116370,queja_usuario,comentario sobre
 mnt-09513,2024-01-18,correctivo,bueno,bueno,9446279,preventivo,comentario sobre el mantenimiento 9513
 mnt-09514,2024-09-20,preventivo,bueno,malo,21227,queja_usuario,comentario sobre el mantenimiento 9514
 mnt-09515,2024-05-14,emergencia,bueno,bueno,3566750,preventivo,comentario sobre el mantenimiento 9515
-mnt-09516,2024-08-17,correctivo,bueno,bueno,4991259,queja_usuario,mnt-09516-Comentarios-desconocido
+mnt-09516,2024-08-17,correctivo,bueno,bueno,4991259,queja_usuario,
 mnt-09517,2024-09-29,correctivo,malo,malo,5107844,preventivo,comentario sobre el mantenimiento 9517
 mnt-09518,2024-05-20,correctivo,regular,malo,5263920,preventivo,comentario sobre el mantenimiento 9518
 mnt-09519,2024-06-04,correctivo,regular,bueno,9424490,preventivo,comentario sobre el mantenimiento 9519
@@ -9663,7 +9663,7 @@ mnt-09661,2024-07-19,correctivo,bueno,bueno,9052585,queja_usuario,comentario sob
 mnt-09662,2023-12-08,emergencia,bueno,bueno,34139,queja_usuario,comentario sobre el mantenimiento 9662
 mnt-09663,2024-03-11,correctivo,regular,bueno,7243276,queja_usuario,comentario sobre el mantenimiento 9663
 mnt-09664,2024-03-11,emergencia,regular,malo,20760,queja_usuario,comentario sobre el mantenimiento 9664
-mnt-09665,2024-05-03,preventivo,regular,regular,9433288,preventivo,mnt-09665-Comentarios-desconocido
+mnt-09665,2024-05-03,preventivo,regular,regular,9433288,preventivo,
 mnt-09666,2024-03-28,correctivo,bueno,bueno,8914020,preventivo,comentario sobre el mantenimiento 9666
 mnt-09667,2024-04-03,preventivo,regular,regular,9407759,queja_usuario,comentario sobre el mantenimiento 9667
 mnt-09668,2024-04-07,correctivo,bueno,bueno,20136,queja_usuario,comentario sobre el mantenimiento 9668
@@ -9676,7 +9676,7 @@ mnt-09674,2024-08-22,preventivo,bueno,bueno,59804,queja_usuario,comentario sobre
 mnt-09675,2024-05-02,emergencia,bueno,regular,58057,preventivo,comentario sobre el mantenimiento 9675
 mnt-09676,2024-05-18,correctivo,regular,malo,21964,queja_usuario,comentario sobre el mantenimiento 9676
 mnt-09677,2024-03-18,emergencia,malo,regular,9285422,preventivo,comentario sobre el mantenimiento 9677
-mnt-09678,2024-06-10,correctivo,bueno,regular,25609,queja_usuario,mnt-09678-Comentarios-desconocido
+mnt-09678,2024-06-10,correctivo,bueno,regular,25609,queja_usuario,
 mnt-09679,2024-05-19,emergencia,malo,bueno,34819,queja_usuario,comentario sobre el mantenimiento 9679
 mnt-09680,2024-06-16,emergencia,regular,malo,9194970,preventivo,comentario sobre el mantenimiento 9680
 mnt-09681,2024-01-25,preventivo,malo,regular,3573910,queja_usuario,comentario sobre el mantenimiento 9681
@@ -9819,7 +9819,7 @@ mnt-09817,2024-06-18,correctivo,regular,regular,9183121,queja_usuario,comentario
 mnt-09818,2024-09-15,emergencia,malo,bueno,9292073,preventivo,comentario sobre el mantenimiento 9818
 mnt-09819,2024-04-20,emergencia,bueno,bueno,3531342,queja_usuario,comentario sobre el mantenimiento 9819
 mnt-09820,2023-10-23,emergencia,malo,regular,5250737,queja_usuario,comentario sobre el mantenimiento 9820
-mnt-09821,2024-10-02,emergencia,regular,malo,7934645,mnt-09821-Tipo-desconocido,comentario sobre el mantenimiento 9821
+mnt-09821,2024-10-02,emergencia,regular,malo,7934645,,comentario sobre el mantenimiento 9821
 mnt-09822,2024-01-22,emergencia,regular,malo,4750014,preventivo,comentario sobre el mantenimiento 9822
 mnt-09823,2023-12-24,emergencia,bueno,regular,59791,queja_usuario,comentario sobre el mantenimiento 9823
 mnt-09824,2024-12-05,emergencia,bueno,bueno,7887285,queja_usuario,comentario sobre el mantenimiento 9824
@@ -9877,7 +9877,7 @@ mnt-09875,2024-08-11,correctivo,regular,regular,33341,queja_usuario,comentario s
 mnt-09876,2023-11-07,correctivo,bueno,malo,5270772,queja_usuario,comentario sobre el mantenimiento 9876
 mnt-09877,2023-12-26,correctivo,regular,regular,7839112,preventivo,comentario sobre el mantenimiento 9877
 mnt-09878,2024-01-24,emergencia,bueno,bueno,8891596,queja_usuario,comentario sobre el mantenimiento 9878
-mnt-09879,2024-05-21,emergencia,malo,malo,6761234,mnt-09879-Tipo-desconocido,mnt-09879-Comentarios-desconocido
+mnt-09879,2024-05-21,emergencia,malo,malo,6761234,,
 mnt-09880,2024-05-18,emergencia,bueno,regular,19954,queja_usuario,comentario sobre el mantenimiento 9880
 mnt-09881,2023-12-26,emergencia,malo,regular,21142,preventivo,comentario sobre el mantenimiento 9881
 mnt-09882,2024-02-22,correctivo,malo,bueno,9312944,preventivo,comentario sobre el mantenimiento 9882
@@ -9912,7 +9912,7 @@ mnt-09910,2024-01-06,preventivo,regular,bueno,5229336,queja_usuario,comentario s
 mnt-09911,2024-01-07,preventivo,bueno,malo,33636,queja_usuario,comentario sobre el mantenimiento 9911
 mnt-09912,2023-11-14,correctivo,regular,bueno,59959,queja_usuario,comentario sobre el mantenimiento 9912
 mnt-09913,2024-07-14,correctivo,malo,bueno,9187130,preventivo,comentario sobre el mantenimiento 9913
-mnt-09914,2024-07-11,emergencia,malo,regular,59688,mnt-09914-Tipo-desconocido,comentario sobre el mantenimiento 9914
+mnt-09914,2024-07-11,emergencia,malo,regular,59688,,comentario sobre el mantenimiento 9914
 mnt-09915,2024-06-23,correctivo,malo,bueno,9289040,preventivo,comentario sobre el mantenimiento 9915
 mnt-09916,2023-12-16,emergencia,regular,malo,4749963,preventivo,comentario sobre el mantenimiento 9916
 mnt-09917,2024-05-03,correctivo,malo,bueno,5019317,preventivo,comentario sobre el mantenimiento 9917
@@ -10058,7 +10058,7 @@ mnt-10056,2024-04-04,emergencia,bueno,bueno,5158856,queja_usuario,comentario sob
 mnt-10057,2024-04-06,preventivo,bueno,regular,9186803,queja_usuario,comentario sobre el mantenimiento 10057
 mnt-10058,2024-01-14,emergencia,regular,regular,7855040,queja_usuario,comentario sobre el mantenimiento 10058
 mnt-10059,2024-02-22,emergencia,malo,bueno,7125606,queja_usuario,comentario sobre el mantenimiento 10059
-mnt-10060,2024-09-09,preventivo,malo,regular,58592,queja_usuario,mnt-10060-Comentarios-desconocido
+mnt-10060,2024-09-09,preventivo,malo,regular,58592,queja_usuario,
 mnt-10061,2024-03-30,preventivo,bueno,regular,59895,preventivo,comentario sobre el mantenimiento 10061
 mnt-10062,2023-11-24,preventivo,regular,malo,3581570,queja_usuario,comentario sobre el mantenimiento 10062
 mnt-10063,2023-02-11,preventivo,regular,regular,19110,queja_usuario,comentario sobre el mantenimiento 10063
@@ -10234,7 +10234,7 @@ mnt-10232,2024-09-22,correctivo,regular,bueno,35031,preventivo,comentario sobre 
 mnt-10233,2023-01-11,emergencia,regular,bueno,57978,preventivo,comentario sobre el mantenimiento 10233
 mnt-10234,2024-08-16,emergencia,regular,regular,37155,queja_usuario,comentario sobre el mantenimiento 10234
 mnt-10235,2024-06-07,emergencia,bueno,regular,58448,preventivo,comentario sobre el mantenimiento 10235
-mnt-10236,2024-01-15,preventivo,bueno,regular,3575781,mnt-10236-Tipo-desconocido,comentario sobre el mantenimiento 10236
+mnt-10236,2024-01-15,preventivo,bueno,regular,3575781,,comentario sobre el mantenimiento 10236
 mnt-10237,2024-02-13,correctivo,malo,bueno,22053,preventivo,comentario sobre el mantenimiento 10237
 mnt-10238,2024-07-03,correctivo,bueno,bueno,8803427,queja_usuario,comentario sobre el mantenimiento 10238
 mnt-10239,2024-03-21,preventivo,regular,malo,451364,queja_usuario,comentario sobre el mantenimiento 10239
@@ -10647,7 +10647,7 @@ mnt-10645,2023-12-31,correctivo,bueno,regular,3580771,queja_usuario,comentario s
 mnt-10646,2024-02-07,emergencia,malo,bueno,21378,preventivo,comentario sobre el mantenimiento 10646
 mnt-10647,2024-07-16,emergencia,malo,regular,5268587,preventivo,comentario sobre el mantenimiento 10647
 mnt-10648,2024-03-04,emergencia,malo,regular,5219516,preventivo,comentario sobre el mantenimiento 10648
-mnt-10649,2023-10-21,emergencia,regular,malo,35154,preventivo,mnt-10649-Comentarios-desconocido
+mnt-10649,2023-10-21,emergencia,regular,malo,35154,preventivo,
 mnt-10650,2024-01-07,emergencia,regular,malo,24930,preventivo,comentario sobre el mantenimiento 10650
 mnt-10651,2023-11-21,emergencia,bueno,malo,3962734,preventivo,comentario sobre el mantenimiento 10651
 mnt-10652,2024-08-10,emergencia,malo,bueno,8927971,preventivo,comentario sobre el mantenimiento 10652
@@ -10964,7 +10964,7 @@ mnt-10962,2024-09-26,preventivo,bueno,bueno,19969,queja_usuario,comentario sobre
 mnt-10963,2024-09-16,correctivo,bueno,regular,4749299,queja_usuario,comentario sobre el mantenimiento 10963
 mnt-10964,2024-02-15,emergencia,bueno,regular,34897,preventivo,comentario sobre el mantenimiento 10964
 mnt-10965,2024-02-04,correctivo,bueno,bueno,4984514,preventivo,comentario sobre el mantenimiento 10965
-mnt-10966,2024-07-21,preventivo,regular,bueno,34093,queja_usuario,mnt-10966-Comentarios-desconocido
+mnt-10966,2024-07-21,preventivo,regular,bueno,34093,queja_usuario,
 mnt-10967,2024-01-12,emergencia,malo,regular,9177753,queja_usuario,comentario sobre el mantenimiento 10967
 mnt-10968,2024-06-11,correctivo,malo,bueno,7128836,queja_usuario,comentario sobre el mantenimiento 10968
 mnt-10969,2023-12-20,preventivo,bueno,bueno,3581612,queja_usuario,comentario sobre el mantenimiento 10969
@@ -11241,7 +11241,7 @@ mnt-11239,2024-09-17,correctivo,bueno,regular,34959,preventivo,comentario sobre 
 mnt-11240,2024-01-16,correctivo,bueno,bueno,21918,preventivo,comentario sobre el mantenimiento 11240
 mnt-11241,2024-06-06,preventivo,regular,malo,34126,queja_usuario,comentario sobre el mantenimiento 11241
 mnt-11242,2024-02-12,emergencia,bueno,regular,9494973,preventivo,comentario sobre el mantenimiento 11242
-mnt-11243,2024-05-05,emergencia,regular,bueno,7135410,mnt-11243-Tipo-desconocido,comentario sobre el mantenimiento 11243
+mnt-11243,2024-05-05,emergencia,regular,bueno,7135410,,comentario sobre el mantenimiento 11243
 mnt-11244,2024-01-04,preventivo,regular,malo,19358,queja_usuario,comentario sobre el mantenimiento 11244
 mnt-11245,2024-04-02,emergencia,bueno,malo,58510,preventivo,comentario sobre el mantenimiento 11245
 mnt-11246,2024-01-22,emergencia,malo,bueno,9187546,preventivo,comentario sobre el mantenimiento 11246
@@ -11796,7 +11796,7 @@ mnt-11794,2024-01-11,correctivo,malo,malo,9271171,preventivo,comentario sobre el
 mnt-11795,2024-03-07,correctivo,regular,bueno,34166,queja_usuario,comentario sobre el mantenimiento 11795
 mnt-11796,2023-10-25,emergencia,bueno,regular,24978,preventivo,comentario sobre el mantenimiento 11796
 mnt-11797,2023-11-10,correctivo,bueno,bueno,7841700,preventivo,comentario sobre el mantenimiento 11797
-mnt-11798,2024-05-07,emergencia,bueno,malo,25067,preventivo,mnt-11798-Comentarios-desconocido
+mnt-11798,2024-05-07,emergencia,bueno,malo,25067,preventivo,
 mnt-11799,2024-09-04,emergencia,malo,malo,5197227,queja_usuario,comentario sobre el mantenimiento 11799
 mnt-11800,2024-05-14,emergencia,regular,bueno,21392,preventivo,comentario sobre el mantenimiento 11800
 mnt-11801,2023-10-27,emergencia,malo,malo,52268,preventivo,comentario sobre el mantenimiento 11801
@@ -11838,7 +11838,7 @@ mnt-11836,2024-06-20,preventivo,bueno,bueno,7602208,preventivo,comentario sobre 
 mnt-11837,2024-06-28,emergencia,bueno,malo,5199536,preventivo,comentario sobre el mantenimiento 11837
 mnt-11838,2024-02-16,correctivo,regular,bueno,5195673,queja_usuario,comentario sobre el mantenimiento 11838
 mnt-11839,2024-08-28,emergencia,bueno,bueno,7526995,queja_usuario,comentario sobre el mantenimiento 11839
-mnt-11840,2024-03-30,correctivo,regular,bueno,4823200,preventivo,mnt-11840-Comentarios-desconocido
+mnt-11840,2024-03-30,correctivo,regular,bueno,4823200,preventivo,
 mnt-11841,2023-12-22,preventivo,malo,regular,60195,preventivo,comentario sobre el mantenimiento 11841
 mnt-11842,2024-02-25,preventivo,bueno,malo,7591517,queja_usuario,comentario sobre el mantenimiento 11842
 mnt-11843,2024-02-12,emergencia,bueno,malo,32696,queja_usuario,comentario sobre el mantenimiento 11843
@@ -11943,7 +11943,7 @@ mnt-11941,2024-07-30,correctivo,regular,regular,23396,queja_usuario,comentario s
 mnt-11942,2024-08-10,emergencia,bueno,bueno,19455,queja_usuario,comentario sobre el mantenimiento 11942
 mnt-11943,2024-04-11,preventivo,malo,bueno,59661,preventivo,comentario sobre el mantenimiento 11943
 mnt-11944,2024-05-05,preventivo,regular,malo,9297808,preventivo,comentario sobre el mantenimiento 11944
-mnt-11945,2024-06-24,correctivo,regular,malo,21652,mnt-11945-Tipo-desconocido,comentario sobre el mantenimiento 11945
+mnt-11945,2024-06-24,correctivo,regular,malo,21652,,comentario sobre el mantenimiento 11945
 mnt-11946,2024-07-06,correctivo,regular,regular,21747,preventivo,comentario sobre el mantenimiento 11946
 mnt-11947,2023-04-12,preventivo,bueno,regular,5195555,queja_usuario,comentario sobre el mantenimiento 11947
 mnt-11948,2024-08-22,correctivo,bueno,regular,4704491,preventivo,comentario sobre el mantenimiento 11948
@@ -12129,7 +12129,7 @@ mnt-12127,2023-10-30,correctivo,regular,bueno,22521,queja_usuario,comentario sob
 mnt-12128,2024-01-08,preventivo,bueno,bueno,9180717,preventivo,comentario sobre el mantenimiento 12128
 mnt-12129,2024-08-29,correctivo,regular,bueno,9294345,preventivo,comentario sobre el mantenimiento 12129
 mnt-12130,2023-12-07,correctivo,malo,bueno,5220641,preventivo,comentario sobre el mantenimiento 12130
-mnt-12131,2024-02-23,correctivo,malo,malo,451537,preventivo,mnt-12131-Comentarios-desconocido
+mnt-12131,2024-02-23,correctivo,malo,malo,451537,preventivo,
 mnt-12132,2024-03-27,correctivo,malo,bueno,5659424,queja_usuario,comentario sobre el mantenimiento 12132
 mnt-12133,2024-06-01,emergencia,regular,malo,7928060,preventivo,comentario sobre el mantenimiento 12133
 mnt-12134,2024-02-04,emergencia,regular,malo,20504,queja_usuario,comentario sobre el mantenimiento 12134
@@ -12224,7 +12224,7 @@ mnt-12222,2023-10-26,correctivo,bueno,bueno,18979,preventivo,comentario sobre el
 mnt-12223,2024-06-11,correctivo,malo,bueno,9159036,preventivo,comentario sobre el mantenimiento 12223
 mnt-12224,2024-09-19,correctivo,bueno,regular,9291635,queja_usuario,comentario sobre el mantenimiento 12224
 mnt-12225,2024-06-11,correctivo,regular,regular,21890,queja_usuario,comentario sobre el mantenimiento 12225
-mnt-12226,2024-01-16,correctivo,malo,regular,5658065,preventivo,mnt-12226-Comentarios-desconocido
+mnt-12226,2024-01-16,correctivo,malo,regular,5658065,preventivo,
 mnt-12227,2023-11-20,correctivo,regular,malo,25712,queja_usuario,comentario sobre el mantenimiento 12227
 mnt-12228,2024-07-27,correctivo,bueno,malo,21965,queja_usuario,comentario sobre el mantenimiento 12228
 mnt-12229,2024-08-27,emergencia,malo,malo,21573,queja_usuario,comentario sobre el mantenimiento 12229
@@ -12261,7 +12261,7 @@ mnt-12259,2023-12-03,emergencia,malo,regular,21749,preventivo,comentario sobre e
 mnt-12260,2024-03-04,correctivo,malo,bueno,57937,queja_usuario,comentario sobre el mantenimiento 12260
 mnt-12261,2024-02-20,preventivo,regular,malo,4796517,queja_usuario,comentario sobre el mantenimiento 12261
 mnt-12262,2023-10-12,correctivo,regular,bueno,3581611,preventivo,comentario sobre el mantenimiento 12262
-mnt-12263,2024-01-06,correctivo,regular,bueno,59655,queja_usuario,mnt-12263-Comentarios-desconocido
+mnt-12263,2024-01-06,correctivo,regular,bueno,59655,queja_usuario,
 mnt-12264,2024-10-06,preventivo,regular,malo,58513,preventivo,comentario sobre el mantenimiento 12264
 mnt-12265,2024-09-19,preventivo,bueno,malo,21963,preventivo,comentario sobre el mantenimiento 12265
 mnt-12266,2023-11-05,preventivo,bueno,bueno,33453,preventivo,comentario sobre el mantenimiento 12266
@@ -12353,7 +12353,7 @@ mnt-12351,2024-01-02,emergencia,bueno,bueno,5025120,queja_usuario,comentario sob
 mnt-12352,2023-12-05,emergencia,regular,regular,7247852,preventivo,comentario sobre el mantenimiento 12352
 mnt-12353,2024-08-21,preventivo,regular,malo,4949971,preventivo,comentario sobre el mantenimiento 12353
 mnt-12354,2024-04-13,correctivo,regular,bueno,3997033,queja_usuario,comentario sobre el mantenimiento 12354
-mnt-12355,2024-06-17,emergencia,malo,regular,5195673,preventivo,mnt-12355-Comentarios-desconocido
+mnt-12355,2024-06-17,emergencia,malo,regular,5195673,preventivo,
 mnt-12356,2023-11-29,preventivo,bueno,malo,33993,preventivo,comentario sobre el mantenimiento 12356
 mnt-12357,2023-02-12,correctivo,malo,bueno,7872670,queja_usuario,comentario sobre el mantenimiento 12357
 mnt-12358,2024-02-03,emergencia,regular,malo,52934,queja_usuario,comentario sobre el mantenimiento 12358
@@ -12603,7 +12603,7 @@ mnt-12601,2024-04-12,emergencia,malo,bueno,3559753,queja_usuario,comentario sobr
 mnt-12602,2024-07-29,correctivo,regular,regular,20789,preventivo,comentario sobre el mantenimiento 12602
 mnt-12603,2024-09-18,emergencia,bueno,regular,32514,queja_usuario,comentario sobre el mantenimiento 12603
 mnt-12604,2024-08-17,preventivo,malo,regular,24827,preventivo,comentario sobre el mantenimiento 12604
-mnt-12605,2024-04-01,preventivo,regular,regular,3575586,queja_usuario,mnt-12605-Comentarios-desconocido
+mnt-12605,2024-04-01,preventivo,regular,regular,3575586,queja_usuario,
 mnt-12606,2023-10-19,preventivo,malo,bueno,9435358,queja_usuario,comentario sobre el mantenimiento 12606
 mnt-12607,2024-03-24,preventivo,regular,bueno,7248153,preventivo,comentario sobre el mantenimiento 12607
 mnt-12608,2024-10-08,preventivo,regular,bueno,7927330,queja_usuario,comentario sobre el mantenimiento 12608
@@ -12872,7 +12872,7 @@ mnt-12870,2024-06-08,emergencia,regular,bueno,24987,queja_usuario,comentario sob
 mnt-12871,2024-09-14,preventivo,bueno,regular,22361,preventivo,comentario sobre el mantenimiento 12871
 mnt-12872,2023-11-27,preventivo,bueno,regular,9271161,queja_usuario,comentario sobre el mantenimiento 12872
 mnt-12873,2024-08-24,preventivo,regular,bueno,24958,preventivo,comentario sobre el mantenimiento 12873
-mnt-12874,2024-02-12,correctivo,malo,malo,7741720,mnt-12874-Tipo-desconocido,comentario sobre el mantenimiento 12874
+mnt-12874,2024-02-12,correctivo,malo,malo,7741720,,comentario sobre el mantenimiento 12874
 mnt-12875,2023-10-29,emergencia,regular,regular,9176455,queja_usuario,comentario sobre el mantenimiento 12875
 mnt-12876,2024-09-13,emergencia,regular,malo,32551,preventivo,comentario sobre el mantenimiento 12876
 mnt-12877,2024-02-16,preventivo,bueno,regular,9218667,queja_usuario,comentario sobre el mantenimiento 12877
@@ -13212,14 +13212,14 @@ mnt-13210,2024-09-18,emergencia,bueno,regular,5239317,queja_usuario,comentario s
 mnt-13211,2024-05-26,correctivo,bueno,regular,4949779,preventivo,comentario sobre el mantenimiento 13211
 mnt-13212,2024-01-15,correctivo,malo,bueno,8800082,preventivo,comentario sobre el mantenimiento 13212
 mnt-13213,2024-07-08,correctivo,malo,bueno,9158779,queja_usuario,comentario sobre el mantenimiento 13213
-mnt-13214,2024-03-02,emergencia,malo,bueno,22015,queja_usuario,mnt-13214-Comentarios-desconocido
+mnt-13214,2024-03-02,emergencia,malo,bueno,22015,queja_usuario,
 mnt-13215,2024-02-27,correctivo,bueno,bueno,21964,preventivo,comentario sobre el mantenimiento 13215
 mnt-13216,2024-09-21,correctivo,bueno,bueno,9264106,queja_usuario,comentario sobre el mantenimiento 13216
 mnt-13217,2024-08-21,emergencia,regular,regular,22072,preventivo,comentario sobre el mantenimiento 13217
 mnt-13218,2023-12-15,emergencia,regular,bueno,9187095,preventivo,comentario sobre el mantenimiento 13218
 mnt-13219,2024-06-10,correctivo,regular,bueno,7794405,preventivo,comentario sobre el mantenimiento 13219
 mnt-13220,2024-05-20,preventivo,bueno,bueno,3568522,queja_usuario,comentario sobre el mantenimiento 13220
-mnt-13221,2023-12-23,emergencia,malo,regular,9052588,preventivo,mnt-13221-Comentarios-desconocido
+mnt-13221,2023-12-23,emergencia,malo,regular,9052588,preventivo,
 mnt-13222,2024-10-07,emergencia,malo,regular,7527048,preventivo,comentario sobre el mantenimiento 13222
 mnt-13223,2024-04-16,correctivo,bueno,malo,9407916,queja_usuario,comentario sobre el mantenimiento 13223
 mnt-13224,2023-12-11,emergencia,bueno,malo,4738010,queja_usuario,comentario sobre el mantenimiento 13224
@@ -13764,7 +13764,7 @@ mnt-13762,2024-09-30,emergencia,regular,regular,9149717,queja_usuario,comentario
 mnt-13763,2024-07-02,emergencia,malo,bueno,4987193,queja_usuario,comentario sobre el mantenimiento 13763
 mnt-13764,2024-01-26,emergencia,bueno,bueno,9294044,queja_usuario,comentario sobre el mantenimiento 13764
 mnt-13765,2024-02-06,correctivo,regular,malo,21927,preventivo,comentario sobre el mantenimiento 13765
-mnt-13766,2024-05-28,correctivo,regular,malo,9205241,preventivo,mnt-13766-Comentarios-desconocido
+mnt-13766,2024-05-28,correctivo,regular,malo,9205241,preventivo,
 mnt-13767,2023-11-10,preventivo,regular,malo,33686,preventivo,comentario sobre el mantenimiento 13767
 mnt-13768,2024-03-29,preventivo,bueno,regular,4995134,preventivo,comentario sobre el mantenimiento 13768
 mnt-13769,2024-08-03,preventivo,malo,malo,34954,queja_usuario,comentario sobre el mantenimiento 13769
@@ -14085,12 +14085,12 @@ mnt-14083,2024-06-09,emergencia,malo,bueno,24782,queja_usuario,comentario sobre 
 mnt-14084,2024-06-13,correctivo,malo,malo,35114,queja_usuario,comentario sobre el mantenimiento 14084
 mnt-14085,2024-05-05,correctivo,regular,regular,9277916,preventivo,comentario sobre el mantenimiento 14085
 mnt-14086,2024-03-22,emergencia,bueno,regular,9497331,queja_usuario,comentario sobre el mantenimiento 14086
-mnt-14087,2024-03-16,preventivo,bueno,malo,3569216,mnt-14087-Tipo-desconocido,comentario sobre el mantenimiento 14087
+mnt-14087,2024-03-16,preventivo,bueno,malo,3569216,,comentario sobre el mantenimiento 14087
 mnt-14088,2024-06-22,correctivo,malo,regular,9273130,preventivo,comentario sobre el mantenimiento 14088
 mnt-14089,2024-08-26,preventivo,regular,regular,9426987,preventivo,comentario sobre el mantenimiento 14089
 mnt-14090,2024-01-02,emergencia,regular,bueno,24870,queja_usuario,comentario sobre el mantenimiento 14090
 mnt-14091,2023-10-28,preventivo,bueno,bueno,5217263,preventivo,comentario sobre el mantenimiento 14091
-mnt-14092,2023-11-09,emergencia,bueno,regular,3997077,mnt-14092-Tipo-desconocido,comentario sobre el mantenimiento 14092
+mnt-14092,2023-11-09,emergencia,bueno,regular,3997077,,comentario sobre el mantenimiento 14092
 mnt-14093,2024-01-26,emergencia,regular,regular,58107,queja_usuario,comentario sobre el mantenimiento 14093
 mnt-14094,2024-05-23,emergencia,bueno,regular,33206,preventivo,comentario sobre el mantenimiento 14094
 mnt-14095,2023-12-08,preventivo,bueno,regular,7107101,preventivo,comentario sobre el mantenimiento 14095
@@ -14178,7 +14178,7 @@ mnt-14176,2024-09-20,emergencia,malo,regular,7537975,preventivo,comentario sobre
 mnt-14177,2024-08-25,emergencia,bueno,malo,25538,queja_usuario,comentario sobre el mantenimiento 14177
 mnt-14178,2024-08-08,emergencia,regular,malo,33300,queja_usuario,comentario sobre el mantenimiento 14178
 mnt-14179,2024-04-14,correctivo,malo,malo,22529,queja_usuario,comentario sobre el mantenimiento 14179
-mnt-14180,2024-10-04,preventivo,regular,malo,21460,queja_usuario,mnt-14180-Comentarios-desconocido
+mnt-14180,2024-10-04,preventivo,regular,malo,21460,queja_usuario,
 mnt-14181,2024-10-07,correctivo,regular,regular,8930912,preventivo,comentario sobre el mantenimiento 14181
 mnt-14182,2024-02-17,emergencia,bueno,bueno,59533,queja_usuario,comentario sobre el mantenimiento 14182
 mnt-14183,2024-03-23,preventivo,malo,bueno,5658233,preventivo,comentario sobre el mantenimiento 14183
@@ -14307,7 +14307,7 @@ mnt-14305,2024-02-23,correctivo,bueno,bueno,8938086,queja_usuario,comentario sob
 mnt-14306,2024-08-04,correctivo,malo,regular,3736633,queja_usuario,comentario sobre el mantenimiento 14306
 mnt-14307,2024-03-16,correctivo,malo,malo,25600,preventivo,comentario sobre el mantenimiento 14307
 mnt-14308,2024-07-01,preventivo,bueno,bueno,34795,queja_usuario,comentario sobre el mantenimiento 14308
-mnt-14309,2024-03-09,preventivo,malo,regular,3576456,queja_usuario,mnt-14309-Comentarios-desconocido
+mnt-14309,2024-03-09,preventivo,malo,regular,3576456,queja_usuario,
 mnt-14310,2024-01-06,correctivo,regular,malo,3580717,preventivo,comentario sobre el mantenimiento 14310
 mnt-14311,2024-01-03,preventivo,bueno,regular,4963705,queja_usuario,comentario sobre el mantenimiento 14311
 mnt-14312,2024-04-14,emergencia,malo,regular,5240962,queja_usuario,comentario sobre el mantenimiento 14312
@@ -14437,7 +14437,7 @@ mnt-14435,2024-05-04,preventivo,bueno,malo,9149761,queja_usuario,comentario sobr
 mnt-14436,2023-10-16,correctivo,bueno,regular,6907800,queja_usuario,comentario sobre el mantenimiento 14436
 mnt-14437,2024-06-11,preventivo,malo,malo,33848,preventivo,comentario sobre el mantenimiento 14437
 mnt-14438,2024-06-14,preventivo,malo,regular,60005,queja_usuario,comentario sobre el mantenimiento 14438
-mnt-14439,2024-04-12,emergencia,malo,malo,19354,preventivo,mnt-14439-Comentarios-desconocido
+mnt-14439,2024-04-12,emergencia,malo,malo,19354,preventivo,
 mnt-14440,2023-11-10,correctivo,malo,malo,5158895,preventivo,comentario sobre el mantenimiento 14440
 mnt-14441,2024-10-03,emergencia,bueno,regular,19496,queja_usuario,comentario sobre el mantenimiento 14441
 mnt-14442,2024-05-29,preventivo,regular,bueno,59987,queja_usuario,comentario sobre el mantenimiento 14442
@@ -14448,7 +14448,7 @@ mnt-14446,2024-09-16,preventivo,malo,regular,4796497,preventivo,comentario sobre
 mnt-14447,2024-01-14,emergencia,malo,malo,9496463,queja_usuario,comentario sobre el mantenimiento 14447
 mnt-14448,2024-06-26,preventivo,malo,regular,5238960,queja_usuario,comentario sobre el mantenimiento 14448
 mnt-14449,2024-09-02,preventivo,bueno,malo,32970,queja_usuario,comentario sobre el mantenimiento 14449
-mnt-14450,2023-11-20,correctivo,regular,regular,19928,queja_usuario,mnt-14450-Comentarios-desconocido
+mnt-14450,2023-11-20,correctivo,regular,regular,19928,queja_usuario,
 mnt-14451,2024-06-15,correctivo,malo,regular,9177703,queja_usuario,comentario sobre el mantenimiento 14451
 mnt-14452,2024-02-04,preventivo,bueno,regular,3573257,queja_usuario,comentario sobre el mantenimiento 14452
 mnt-14453,2024-04-23,correctivo,malo,bueno,5241056,queja_usuario,comentario sobre el mantenimiento 14453
@@ -14770,7 +14770,7 @@ mnt-14768,2023-12-03,correctivo,bueno,bueno,9386951,preventivo,comentario sobre 
 mnt-14769,2024-07-19,preventivo,regular,bueno,59161,queja_usuario,comentario sobre el mantenimiento 14769
 mnt-14770,2024-09-01,correctivo,bueno,regular,8888550,queja_usuario,comentario sobre el mantenimiento 14770
 mnt-14771,2024-06-10,correctivo,bueno,regular,59813,preventivo,comentario sobre el mantenimiento 14771
-mnt-14772,2023-11-27,emergencia,malo,bueno,7526872,queja_usuario,mnt-14772-Comentarios-desconocido
+mnt-14772,2023-11-27,emergencia,malo,bueno,7526872,queja_usuario,
 mnt-14773,2023-10-30,preventivo,bueno,malo,8804640,preventivo,comentario sobre el mantenimiento 14773
 mnt-14774,2023-11-05,correctivo,regular,regular,21933,queja_usuario,comentario sobre el mantenimiento 14774
 mnt-14775,2024-08-13,correctivo,bueno,regular,5658534,preventivo,comentario sobre el mantenimiento 14775
@@ -14791,7 +14791,7 @@ mnt-14789,2024-04-21,emergencia,bueno,bueno,20435,queja_usuario,comentario sobre
 mnt-14790,2024-05-29,preventivo,bueno,malo,5025116,preventivo,comentario sobre el mantenimiento 14790
 mnt-14791,2024-02-28,correctivo,bueno,bueno,33809,preventivo,comentario sobre el mantenimiento 14791
 mnt-14792,2023-11-18,emergencia,bueno,malo,32988,preventivo,comentario sobre el mantenimiento 14792
-mnt-14793,2024-08-11,emergencia,regular,regular,7896586,queja_usuario,mnt-14793-Comentarios-desconocido
+mnt-14793,2024-08-11,emergencia,regular,regular,7896586,queja_usuario,
 mnt-14794,2024-02-15,correctivo,regular,malo,7128840,queja_usuario,comentario sobre el mantenimiento 14794
 mnt-14795,2023-11-22,emergencia,bueno,malo,3558524,queja_usuario,comentario sobre el mantenimiento 14795
 mnt-14796,2024-08-10,correctivo,regular,malo,6778225,queja_usuario,comentario sobre el mantenimiento 14796
