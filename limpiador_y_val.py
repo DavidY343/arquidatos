@@ -78,8 +78,8 @@ def limpiar_datos_meteo24(nombre_archivo, estaciones_archivo):
     
     # Crear un DataFrame con los registros limpios
     df_limpio = pd.DataFrame(registros_limpios_list, columns=['FECHA', 'TEMPERATURA', 'PRECIPITACION', 'VIENTO', 'Codigo Postal'])
-   
-    # Guardar el DataFrame limpio en un nuevo archivo CSV
+    df_limpio = df_limpio.rename(columns=str.lower)
+	# Guardar el DataFrame limpio en un nuevo archivo CSV
     df_limpio.to_csv('meteo24.csv', index=False)
 
         # Conectar a MongoDB y seleccionar la base de datos y colección
@@ -91,7 +91,7 @@ def limpiar_datos_meteo24(nombre_archivo, estaciones_archivo):
         db.drop_collection('RegistroClima')
 
     # Aplicar la validación del esquema
-    db.create_collection('meteo24', validator={
+    db.create_collection('RegistroClima', validator={
         "$jsonSchema": {
             "bsonType": "object",
             "required": ["FECHA", "TEMPERATURA", "PRECIPITACION", "VIENTO", "Codigo Postal"],
@@ -177,7 +177,9 @@ def limpiar_usuarios(nombre_archivo):
         print("Hay emails inválidos:")
         print(emails_invalidos[['NIF', 'NOMBRE', 'EMAIL']])
     
-    
+    # Guardar el DataFrame limpio en un nuevo archivo CSV
+    df.to_csv('UsuariosLimpio.csv', index=False)
+	
     # Conectar a MongoDB y seleccionar la base de datos y colección
     client = MongoClient('mongodb://localhost:27017/')
     db = client['arqui2']

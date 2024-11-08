@@ -25,4 +25,4 @@ def insertar_csv_en_mongodb(nombre_archivo_csv, nombre_bd, nombre_coleccion):
     print("Datos insertados en MongoDB con éxito.")
 
 if __name__ == "__main__":
-    insertar_csv_en_mongodb('IncidentesSeguridadLimpio.csv', 'arqui2', 'IncidentesSeguridad')
+    insertar_csv_en_mongodb('AreasLimpio.csv', 'arqui2', 'AreasRecreativa')
