@@ -67,22 +67,22 @@ def limpiar_datos_meteo24(nombre_archivo, estaciones_archivo):
     # Convertir el diccionario a una lista de registros
     registros_limpios_list = [
         {
-            'FECHA': fecha,
-            'TEMPERATURA': float(datos['TEMPERATURA']) if not pd.isna(datos['TEMPERATURA']) else float(mediana_temperatura),
-            'PRECIPITACION': float(datos['PRECIPITACION']) if not pd.isna(datos['PRECIPITACION']) else 0.0,
-            'VIENTO': bool(datos['VIENTO']) if not pd.isna(datos['VIENTO']) else False,
-            'Codigo Postal': str(datos['Codigo Postal'])
+            'fecha': fecha,
+            'temperatura': float(datos['TEMPERATURA']) if not pd.isna(datos['TEMPERATURA']) else float(mediana_temperatura),
+            'precipitacion': float(datos['PRECIPITACION']) if not pd.isna(datos['PRECIPITACION']) else 0.0,
+            'vientosFuertes': bool(datos['VIENTO']) if not pd.isna(datos['VIENTO']) else False,
+            'codigoPostal': str(datos['Codigo Postal'])
         }
         for (fecha, distrito), datos in registros_limpios.items()
     ]
     
     # Crear un DataFrame con los registros limpios
-    df_limpio = pd.DataFrame(registros_limpios_list, columns=['FECHA', 'TEMPERATURA', 'PRECIPITACION', 'VIENTO', 'Codigo Postal'])
-    df_limpio = df_limpio.rename(columns=str.lower)
+    df_limpio = pd.DataFrame(registros_limpios_list, columns=['fecha', 'temperatura', 'precipitacion', 'vientosFuertes', 'codigoPostal'])
+
 	# Guardar el DataFrame limpio en un nuevo archivo CSV
     df_limpio.to_csv('meteo24.csv', index=False)
 
-        # Conectar a MongoDB y seleccionar la base de datos y colección
+    # Conectar a MongoDB y seleccionar la base de datos y colección
     client = MongoClient('mongodb://localhost:27017/')
     db = client['arqui2']
     
@@ -94,26 +94,26 @@ def limpiar_datos_meteo24(nombre_archivo, estaciones_archivo):
     db.create_collection('RegistroClima', validator={
         "$jsonSchema": {
             "bsonType": "object",
-            "required": ["FECHA", "TEMPERATURA", "PRECIPITACION", "VIENTO", "Codigo Postal"],
+            "required": ["fecha", "temperatura", "precipitacion", "vientosFuertes", "codigoPostal"],
             "properties": {
-                "FECHA": {
+                "fecha": {
                     "bsonType": "string",
                     "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
                     "description": "Debe ser una cadena en formato de fecha (YYYY-MM-DD) y es obligatorio"
                 },
-                "TEMPERATURA": {
+                "temperatura": {
                     "bsonType": "double",
                     "description": "Debe ser un número y es obligatorio"
                 },
-                "PRECIPITACION": {
+                "precipitacion": {
                     "bsonType": "double",
                     "description": "Debe ser un número y es obligatorio"
                 },
-                "VIENTO": {
+                "vientosFuertes": {
                     "bsonType": "bool",
                     "description": "Debe ser un booleano y es obligatorio"
                 },
-                "Codigo Postal": {
+                "codigoPostal": {
                     "bsonType": "string",
                     "pattern": "^\\d{5}$",
                     "description": "Debe ser una cadena de 5 dígitos y es obligatorio"
@@ -177,6 +177,12 @@ def limpiar_usuarios(nombre_archivo):
         print("Hay emails inválidos:")
         print(emails_invalidos[['NIF', 'NOMBRE', 'EMAIL']])
     
+    df = df.rename(columns={
+        'NIF': 'NIF',
+        'NOMBRE': 'nombre',
+        'EMAIL': 'email',
+        'TELEFONO': 'telefono',
+    })
     # Guardar el DataFrame limpio en un nuevo archivo CSV
     df.to_csv('UsuariosLimpio.csv', index=False)
 	
@@ -192,23 +198,23 @@ def limpiar_usuarios(nombre_archivo):
     db.create_collection('Usuarios', validator={
         '$jsonSchema': {
                 'bsonType': 'object',
-                'required': ['NIF', 'NOMBRE', 'EMAIL', 'TELEFONO'],
+                'required': ['NIF', 'nombre', 'email', 'telefono'],
                 'properties': {
                     'NIF': {
                         'bsonType': 'string',
                         'pattern': '^[0-9]{3}-[0-9]{2}-[0-9]{4}$',
                         'description': 'Debe ser una cadena con el formato XXX-XX-XXXX y es obligatorio'
                     },
-                    'NOMBRE': {
+                    'nombre': {
                         'bsonType': 'string',
                         'description': 'Debe ser una cadena en minúsculas y es obligatorio'
                     },
-                    'EMAIL': {
+                    'email': {
                         'bsonType': 'string',
                         'pattern': '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$',
                         'description': 'Debe ser una cadena con formato de email válido y es obligatorio'
                     },
-                    'TELEFONO': {
+                    'telefono': {
                         'bsonType': 'string',
                         'pattern': '^\\d{9}$',
                         'description': 'Debe ser una cadena de 9 dígitos y es obligatorio'
