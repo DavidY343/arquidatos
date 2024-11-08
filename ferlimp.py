@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import ast
 import numpy as np
 from pymongo import MongoClient
 
@@ -302,8 +303,12 @@ def limpiar_datasets():
         df_user_incidences = normalizar_dataset(df_user_incidences)
         df_user_incidences.rename(columns={'MantenimeintoID': 'MantenimientoID'}, inplace=True)
         df_user_incidences.rename(columns={'ID': 'id'}, inplace=True)
+        df_incidencias_usuario['id'] = df_incidencias_usuario['id'].astype(str)
+        #transformamos los valores de UsuarioID a listas
+        df_incidencias_usuario['UsuarioID'] = df_incidencias_usuario['UsuarioID'].apply(lambda x: ast.literal_eval(x.replace('"', '')) if isinstance(x, str) else [])
         df_user_incidences.rename(columns={'FECHA_REPORTE': 'fechaReporte'}, inplace=True)
         df_user_incidences.rename(columns={'ESTADO': 'estado'}, inplace=True)
+        df_user_incidences.rename(columns={'TIPO_INCIDENCIA': 'tipoIncidencia'}, inplace=True)
         df_user_incidences['nivelEscalamiento'] = np.random.choice(['bajo', 'medio', 'alto'],
                                                                    size=len(df_user_incidences))
 
@@ -313,16 +318,21 @@ def limpiar_datasets():
                 fechas_resolucion = df_mantenimientos[df_mantenimientos['id'].isin(mantenimiento_ids)]['fechaIntervencion']
                 ultima_fecha_resolucion = fechas_resolucion.max()
                 if pd.notnull(ultima_fecha_resolucion):
-                    df_user_incidences.at[index, 'tiempoResolucion'] = \
+                    if ultima_fecha_resolucion < row['fechaReporte']:
+                        df_user_incidences.at[index, 'tiempoResolucion'] = -1
+                    else:
+                        df_user_incidences.at[index, 'tiempoResolucion'] = \
                         (pd.to_datetime(ultima_fecha_resolucion) - pd.to_datetime(row['fechaReporte'])).days
                 else:
-                    df_user_incidences.at[index, 'tiempoResolucion'] = None
+                    df_user_incidences.at[index, 'tiempoResolucion'] = -1
+            else:
+                df_user_incidences.at[index, 'tiempoResolucion'] = -1
 
         return df_user_incidences
 
     df_incidencias_usuario = normalizar_incidencias_usuarios(df_incidencias_usuario, df_mantenimiento)
 
-    def quitar_decimal(df):
+    def quitar_decimal_juegos(df):
         df['NDP'] = df['NDP'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
         df['desgasteAcumulado'] = df['desgasteAcumulado'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
         df['desgasteAcumulado'] = pd.to_numeric(df['desgasteAcumulado'], errors='coerce').fillna(0).astype(int)
@@ -335,7 +345,13 @@ def limpiar_datasets():
         return df
 
     # Aplicar la función a los DataFrames
-    df_juegos = quitar_decimal(df_juegos)
+    df_juegos = quitar_decimal_juegos(df_juegos)
+    def quitar_decimal_incidencias(df):
+        df['tiempoResolucion'] = df['tiempoResolucion'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['tiempoResolucion'] = pd.to_numeric(df['tiempoResolucion'], errors='coerce').astype(int)
+        
+        return df
+    df_incidencias_usuario = quitar_decimal_incidencias(df_incidencias_usuario)
     def rellenar_coords(df):
         for index, row in df.iterrows():
             if row['id'] == 58390:
@@ -371,8 +387,8 @@ def limpiar_datasets():
         # Imprimir las columnas con valores nulos y la cantidad de nulos por columna
         print(f"Columnas con valores nulos{nombre}:")
         print(columnas_con_nulos)
-    print("Los tipos FECHAS SON:")
-    print(df_juegos[['fechaInstalacion', 'ultimaFechaMantenimiento']].dtypes)
+    #print("Los tipos FECHAS SON:")
+    #print(df_juegos[['fechaInstalacion', 'ultimaFechaMantenimiento']].dtypes)
     #contar_nulos(df_areas, "Areas")
     #contar_nulos(df_juegos, "Juegos")
     #contar_nulos(df_mantenimiento, "Mantenimiento")
@@ -389,7 +405,8 @@ def limpiar_datasets():
     # Eliminar la colección si ya existe
     if 'Juegos' in db.list_collection_names():
         db.drop_collection('Juegos')
-
+        db.drop_collection('Mantenimiento')
+        db.drop_collection('IncidenciasUsuario')
 
     db.create_collection('Juegos', validator = {
         "$jsonSchema": {
@@ -518,16 +535,74 @@ def limpiar_datasets():
                 }
             }
         }
-        })
-    collection = db['Juegos']
+    })
+    collection_juegos = db['Juegos']
     
     # Convertir el DataFrame a una lista de diccionarios
-    registros_limpios_list = df_juegos.to_dict('records')
+    registros_limpios_juegos_list = df_juegos.to_dict('records')
     
     # Insertar los registros en la colección
-    collection.insert_many(registros_limpios_list)
+    collection_juegos.insert_many(registros_limpios_juegos_list)
     
-    print("Datos insertados en MongoDB con éxito.")
+    print("Datos de juegos insertados en MongoDB con éxito.")
 
+    db.create_collection('IncidenciasUsuario', validator = {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "title": "incidencias de los usuarios",
+        "required": ["id", "tipoIncidencia", "fechaReporte", "estado", "UsuarioID", "MantenimientoID", "tiempoResolucion"],
+        "properties": {
+            "id": {
+                "bsonType": "string",
+                "description": "Debe ser un número entero único que identifica cada registro."
+            },
+            "tipoIncidencia": {
+                "bsonType": "string",
+                "enum": ["desgaste", "mal funcionamiento", "rotura", "vandalismo"],
+                "description": "Tipo de incidencia reportada."
+            },
+            "fechaReporte": {
+                "bsonType": "date",
+                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                "description": "Fecha de reporte de la incidencia en formato YYYY-MM-DD."
+            },
+            "estado": {
+                "bsonType": "string",
+                "enum": ["abierta", "cerrada"],
+                "description": "Estado actual de la incidencia."
+            },
+            "UsuarioID": {
+                "bsonType": "array",
+                "description": "Identificador del usuario que reportó la incidencia."
+            },
+            "MantenimientoID": {
+                "bsonType": "string",
+                "description": "Identificador de la tarea de mantenimiento asociada."
+            },
+            "nivelEscalamiento": {
+                "bsonType": "string",
+                "enum": ["bajo", "medio", "alto"],
+                "description": "Nivel de escalamiento de la incidencia."
+            },
+            "tiempoResolucion": {
+                "bsonType": ["int", "null"],
+                "minimum": -1,
+                "description": "Tiempo en horas para la resolución de la incidencia."
+            }
+        }
+    }
+    })
+    collection_incidencias_usuario = db['IncidenciasUsuario']
+    
+    # Convertir el DataFrame a una lista de diccionarios
+    registros_limpios_incidencias_usuario_list = df_incidencias_usuario.to_dict('records')
+    
+    # Insertar los registros en la colección
+    collection_incidencias_usuario.insert_many(registros_limpios_incidencias_usuario_list)
+    
+    print("Datos de incidencias usuario insertados en MongoDB con éxito.")
+
+    
+    print("Datos de incidencias usuario insertados en MongoDB con éxito.")
 # Ejecutar la función
 limpiar_datasets()
