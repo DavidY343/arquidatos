@@ -332,12 +332,23 @@ def limpiar_datasets():
 
     df_incidencias_usuario = normalizar_incidencias_usuarios(df_incidencias_usuario, df_mantenimiento)
 
+    
+    def rellenar_coords(df):
+        for index, row in df.iterrows():
+            if row['id'] == 58390:
+                df.at[index, 'COORD_GIS_X'] = (440282.09 + 440327.28)/2
+                df.at[index, 'COORD_GIS_Y'] = (4476028.16 + 4475886.97)/2
+        return df
+    df_juegos = rellenar_coords(df_juegos)
     def quitar_decimal_juegos(df):
+        df['id'] = df['id'].astype(str)
         df['NDP'] = df['NDP'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
         df['desgasteAcumulado'] = df['desgasteAcumulado'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
         df['desgasteAcumulado'] = pd.to_numeric(df['desgasteAcumulado'], errors='coerce').fillna(0).astype(int)
         df['COD_DISTRITO'] = pd.to_numeric(df['COD_DISTRITO'], errors='coerce').fillna(0).astype(int)
         df['COD_POSTAL'] = df['COD_POSTAL'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['COORD_GIS_X'] =df['COORD_GIS_X'].astype(float)
+        df['COORD_GIS_Y'] =df['COORD_GIS_Y'].astype(float)
         # Aplicar la conversión en las columnas de fecha
         df['fechaInstalacion'] = df['fechaInstalacion'].apply(convertir_fecha)
         df['ultimaFechaMantenimiento'] = df['ultimaFechaMantenimiento'].apply(convertir_fecha)
@@ -352,13 +363,11 @@ def limpiar_datasets():
         
         return df
     df_incidencias_usuario = quitar_decimal_incidencias(df_incidencias_usuario)
-    def rellenar_coords(df):
-        for index, row in df.iterrows():
-            if row['id'] == 58390:
-                df.at[index, 'COORD_GIS_X'] = (440282.09 + 440327.28)/2
-                df.at[index, 'COORD_GIS_Y'] = (4476028.16 + 4475886.97)/2
+
+    def quitar_decimal_mantenimiento(df):
+        df['JuegoID'] = df['JuegoID'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
         return df
-    df_juegos = rellenar_coords(df_juegos)
+    df_mantenimiento = quitar_decimal_mantenimiento(df_mantenimiento)
     def rellenar_nulos_unicos(df, dataset_nombre):
         for index, row in df.iterrows():
             for columna in df.columns:
@@ -375,6 +384,7 @@ def limpiar_datasets():
 
     #df_areas = rellenar_nulos_unicos(df_areas, "Areas")
     df_juegos = rellenar_nulos_unicos(df_juegos, "Juegos")
+    df_mantenimiento = rellenar_nulos_unicos(df_mantenimiento, "Mantenimiento")
     def contar_nulos(df, nombre):
         # Cargar el CSV
 
@@ -415,7 +425,7 @@ def limpiar_datasets():
             "required": ["id", "nombre", "COD_BARRIO", "BARRIO", "COD_DISTRITO", "DISTRITO", "estadoOperativo", "LATITUD", "LONGITUD", "TIPO_VIA", "NOM_VIA", "COD_POSTAL", "fechaInstalacion"],
             "properties": {
                 "id": {
-                    "bsonType": "int",
+                    "bsonType": "string",
                     "description": "Debe ser un número entero único que identifica cada registro."
                 },
                 "nombre": {
@@ -602,7 +612,57 @@ def limpiar_datasets():
     
     print("Datos de incidencias usuario insertados en MongoDB con éxito.")
 
+    db.create_collection('Mantenimiento', validator = {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "title": "mantenimiento",
+        "required": ["id", "fechaIntervencion", "tipoIntervencion", "estadoPrevio", "estadoPosterior", "JuegoID", "Tipo", "Comentarios"],
+        "properties": {
+            "id": {
+                "bsonType": "string",
+                "description": "Identificador único de la intervención de mantenimiento."
+            },
+            "fechaIntervencion": {
+                "bsonType": "date",
+                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                "description": "Fecha de la intervención de mantenimiento en formato YYYY-MM-DD."
+            },
+            "tipoIntervencion": {
+                "bsonType": "string",
+                "enum": ["preventivo", "correctivo", "emergencia"],
+                "description": "Tipo de intervención realizada."
+            },
+            "estadoPrevio": {
+                "bsonType": "string",
+                "description": "Estado del elemento antes de la intervención."
+            },
+            "estadoPosterior": {
+                "bsonType": "string",
+                "description": "Estado del elemento después de la intervención."
+            },
+            "JuegoID": {
+                "bsonType": "string",
+                "description": "Identificador del juego o elemento en el que se realizó el mantenimiento."
+            },
+            "Tipo": {
+                "bsonType": "string",
+                "description": "Tipo de mantenimiento (e.g., preventivo, correctivo)."
+            },
+            "Comentarios": {
+                "bsonType": "string",
+                "description": "Comentarios adicionales sobre la intervención de mantenimiento."
+            }
+        }
+    }
+    })
+    collection_mantenimiento = db['Mantenimiento']
     
-    print("Datos de incidencias usuario insertados en MongoDB con éxito.")
+    # Convertir el DataFrame a una lista de diccionarios
+    registros_limpios_mantenimiento_list = df_mantenimiento.to_dict('records')
+    
+    # Insertar los registros en la colección
+    collection_mantenimiento.insert_many(registros_limpios_mantenimiento_list)
+    
+    print("Datos de mantenimiento usuario insertados en MongoDB con éxito.")
 # Ejecutar la función
 limpiar_datasets()
