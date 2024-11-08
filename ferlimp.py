@@ -1,6 +1,8 @@
 import pandas as pd
 import re
+import ast
 import numpy as np
+from pymongo import MongoClient
 
 def limpiar_datasets():
     # Cargar el CSV
@@ -140,7 +142,7 @@ def limpiar_datasets():
         if pd.isnull(row['DISTRITO']) else row['DISTRITO'], axis=1)
 
     # Ejecutar la función para llenar COD_DISTRITO y DISTRITO nulos
-    llenar_cod_distrito_distrito(df_areas)
+    #llenar_cod_distrito_distrito(df_areas)
     llenar_cod_distrito_distrito(df_juegos)
     def actualizar_vias_desconocidas():
         # Función para reemplazar los valores nulos o vacíos de las columnas de vías con el formato adecuado
@@ -164,14 +166,20 @@ def limpiar_datasets():
         # Intentar con varios formatos comunes
         for formato in ("%Y/%m/%d", "%d-%m-%Y", "%m-%d-%Y", "%Y-%m-%d", "%d/%m/%Y", "%y/%m/%d", "%y-%m-%d"):
             try:
-                fecha_convertida = pd.to_datetime(fecha, format=formato)
-                return fecha_convertida.strftime("%Y-%m-%d")  # Formato sin hora
+                fecha_convertida = pd.to_datetime(fecha, format=formato, errors='coerce')
+                fecha_convertida = fecha_convertida.strftime("%Y-%m-%d")
+                fecha_convertida = pd.to_datetime(fecha_convertida)
+                return fecha_convertida # Formato sin hora
             except ValueError:
                 continue
         # Quitar la parte de la hora si tiene el formato "yyyy-mm-dd HH:MM:SS"
         if isinstance(fecha, str) and " " in fecha:
-            return fecha.split(" ")[0]
-        return fecha  # Retornar la fecha sin cambios si ningún formato funciona
+            fecha_sin_hora = fecha.split(" ")[0]
+            try:
+                return pd.to_datetime(fecha_sin_hora)
+            except ValueError:
+                return None  # Retorna None si no se puede convertir
+        return None  # Retorna None si ningún formato funciona
 
     df_areas['FECHA_INSTALACION'] = df_areas['FECHA_INSTALACION'].apply(convertir_fecha)
     df_juegos['FECHA_INSTALACION'] = df_juegos['FECHA_INSTALACION'].apply(convertir_fecha)
@@ -185,22 +193,23 @@ def limpiar_datasets():
         fechas_minimas = df_aux.groupby('NDP')['FECHA_INSTALACION'].min().dropna()
 
         # Función para reemplazar la fecha en áreas si está vacía o contiene "fecha_incorrecta"
-        def reemplazar_fecha(row):
+        def reemplazar_fecha(row, fecha_minima):
             # Si la fecha está vacía o contiene "fecha_incorrecta"
             if pd.isna(row['FECHA_INSTALACION']) or row['FECHA_INSTALACION'] == "fecha_incorrecta":
                 # Primero intentar asignar la fecha más antigua de los juegos
                 nueva_fecha = fechas_minimas.get(row['NDP'], row['FECHA_INSTALACION'])
                 # Si la nueva fecha es inválida o NaT, asignar la ID como desconocida
                 if pd.isna(nueva_fecha) or row['FECHA_INSTALACION'] == "fecha_incorrecta":
-                    return f"{row['ID']}_FECHA_INSTALACION_desconocido"
+                    return fecha_minima
                 return nueva_fecha
             return row['FECHA_INSTALACION']
 
         # Aplicar la función a cada fila del dataset de áreas
-        df['FECHA_INSTALACION'] = df.apply(reemplazar_fecha, axis=1)
+        fecha_mas_antigua = df_aux['FECHA_INSTALACION'].min()
+        df['FECHA_INSTALACION'] = df.apply(reemplazar_fecha, axis=1, fecha_minima=fecha_mas_antigua)
         df['FECHA_INSTALACION'] = df['FECHA_INSTALACION'].apply(convertir_fecha)
     # Ejecutar la función
-    actualizar_fecha_desde_aux(df_areas, df_juegos)
+    #actualizar_fecha_desde_aux(df_areas, df_juegos)
     actualizar_fecha_desde_aux(df_juegos, df_areas)
 
     def modificar_cod_interno_incorrecto(df):
@@ -212,9 +221,9 @@ def limpiar_datasets():
         )
 
     # Ejecutar la función
-    modificar_cod_interno_incorrecto(df_areas)
+    #modificar_cod_interno_incorrecto(df_areas)
     modificar_cod_interno_incorrecto(df_juegos)
-
+    df_juegos['COD_POSTAL'] = df_juegos['COD_POSTAL'].apply(lambda x: None if x == '0' else x)
     def actualizar_cod_postal_desde_aux(df,df_aux):
         # Buscar el primer COD_POSTAL válido para cada NDP en el dataset de juegos
         cod_postales_aux = df_aux.dropna(subset=['COD_POSTAL']).groupby('NDP')['COD_POSTAL'].first()
@@ -236,7 +245,7 @@ def limpiar_datasets():
         df['COD_POSTAL'] = df.apply(reemplazar_cod_postal, axis=1)
 
     # Ejecutar la función
-    actualizar_cod_postal_desde_aux(df_areas, df_juegos)
+    #actualizar_cod_postal_desde_aux(df_areas, df_juegos)
     actualizar_cod_postal_desde_aux(df_juegos, df_areas)
 
 
@@ -256,16 +265,16 @@ def limpiar_datasets():
         df['IndicadorExposicion'] = np.random.choice(['bajo', 'medio', 'alto'], len(df))
         # Calcular desgaste acumulado
         for index, row in df.iterrows():
-            if 'JuegoID' in df_mantenimientos.columns and 'ID' in row:
-                num_mantenimientos = df_mantenimientos[df_mantenimientos['JuegoID'] == row['ID']].shape[0]
+            if 'JuegoID' in df_mantenimientos.columns and 'id' in row:
+                num_mantenimientos = df_mantenimientos[df_mantenimientos['JuegoID'] == row['id']].shape[0]
                 tiempo_de_uso = np.random.randint(1, 16)
                 value_exposicion = {'bajo': 1, 'medio': 2, 'alto': 3}[row['IndicadorExposicion']]
                 df.at[index, 'desgasteAcumulado'] = ((tiempo_de_uso * value_exposicion) - (num_mantenimientos * 100))
-                ultima_fecha = df_mantenimientos[df_mantenimientos['JuegoID'] == row['ID']]['FECHA_INTERVENCION'].max()
+                ultima_fecha = df_mantenimientos[df_mantenimientos['JuegoID'] == row['id']]['FECHA_INTERVENCION'].max()
                 if pd.notnull(ultima_fecha):
                     df.at[index, 'ultimaFechaMantenimiento'] = pd.to_datetime(ultima_fecha).strftime("%Y-%m-%d")
                 else:
-                    df.at[index, 'ultimaFechaMantenimiento'] = None
+                    df.at[index, 'ultimaFechaMantenimiento'] = df.at[index, 'fechaInstalacion']
 
         return df
 
@@ -294,8 +303,12 @@ def limpiar_datasets():
         df_user_incidences = normalizar_dataset(df_user_incidences)
         df_user_incidences.rename(columns={'MantenimeintoID': 'MantenimientoID'}, inplace=True)
         df_user_incidences.rename(columns={'ID': 'id'}, inplace=True)
+        df_incidencias_usuario['id'] = df_incidencias_usuario['id'].astype(str)
+        #transformamos los valores de UsuarioID a listas
+        df_incidencias_usuario['UsuarioID'] = df_incidencias_usuario['UsuarioID'].apply(lambda x: ast.literal_eval(x.replace('"', '')) if isinstance(x, str) else [])
         df_user_incidences.rename(columns={'FECHA_REPORTE': 'fechaReporte'}, inplace=True)
         df_user_incidences.rename(columns={'ESTADO': 'estado'}, inplace=True)
+        df_user_incidences.rename(columns={'TIPO_INCIDENCIA': 'tipoIncidencia'}, inplace=True)
         df_user_incidences['nivelEscalamiento'] = np.random.choice(['bajo', 'medio', 'alto'],
                                                                    size=len(df_user_incidences))
 
@@ -305,22 +318,57 @@ def limpiar_datasets():
                 fechas_resolucion = df_mantenimientos[df_mantenimientos['id'].isin(mantenimiento_ids)]['fechaIntervencion']
                 ultima_fecha_resolucion = fechas_resolucion.max()
                 if pd.notnull(ultima_fecha_resolucion):
-                    df_user_incidences.at[index, 'tiempoResolucion'] = \
+                    if ultima_fecha_resolucion < row['fechaReporte']:
+                        df_user_incidences.at[index, 'tiempoResolucion'] = -1
+                    else:
+                        df_user_incidences.at[index, 'tiempoResolucion'] = \
                         (pd.to_datetime(ultima_fecha_resolucion) - pd.to_datetime(row['fechaReporte'])).days
                 else:
-                    df_user_incidences.at[index, 'tiempoResolucion'] = None
+                    df_user_incidences.at[index, 'tiempoResolucion'] = -1
+            else:
+                df_user_incidences.at[index, 'tiempoResolucion'] = -1
 
         return df_user_incidences
 
     df_incidencias_usuario = normalizar_incidencias_usuarios(df_incidencias_usuario, df_mantenimiento)
 
-    def quitar_decimal_ndp(df):
+    
+    def rellenar_coords(df):
+        for index, row in df.iterrows():
+            if row['id'] == 58390:
+                df.at[index, 'COORD_GIS_X'] = (440282.09 + 440327.28)/2
+                df.at[index, 'COORD_GIS_Y'] = (4476028.16 + 4475886.97)/2
+        return df
+    df_juegos = rellenar_coords(df_juegos)
+    def quitar_decimal_juegos(df):
+        df['id'] = df['id'].astype(str)
         df['NDP'] = df['NDP'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['desgasteAcumulado'] = df['desgasteAcumulado'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['desgasteAcumulado'] = pd.to_numeric(df['desgasteAcumulado'], errors='coerce').fillna(0).astype(int)
+        df['COD_DISTRITO'] = pd.to_numeric(df['COD_DISTRITO'], errors='coerce').fillna(0).astype(int)
+        df['COD_POSTAL'] = df['COD_POSTAL'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['COORD_GIS_X'] =df['COORD_GIS_X'].astype(float)
+        df['COORD_GIS_Y'] =df['COORD_GIS_Y'].astype(float)
+        # Aplicar la conversión en las columnas de fecha
+        df['fechaInstalacion'] = df['fechaInstalacion'].apply(convertir_fecha)
+        df['ultimaFechaMantenimiento'] = df['ultimaFechaMantenimiento'].apply(convertir_fecha)
+
         return df
 
     # Aplicar la función a los DataFrames
-    df_juegos = quitar_decimal_ndp(df_juegos)
-    """def rellenar_nulos_unicos(df, dataset_nombre):
+    df_juegos = quitar_decimal_juegos(df_juegos)
+    def quitar_decimal_incidencias(df):
+        df['tiempoResolucion'] = df['tiempoResolucion'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['tiempoResolucion'] = pd.to_numeric(df['tiempoResolucion'], errors='coerce').astype(int)
+        
+        return df
+    df_incidencias_usuario = quitar_decimal_incidencias(df_incidencias_usuario)
+
+    def quitar_decimal_mantenimiento(df):
+        df['JuegoID'] = df['JuegoID'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        return df
+    df_mantenimiento = quitar_decimal_mantenimiento(df_mantenimiento)
+    def rellenar_nulos_unicos(df, dataset_nombre):
         for index, row in df.iterrows():
             for columna in df.columns:
                 if pd.isnull(row[columna]):
@@ -334,8 +382,9 @@ def limpiar_datasets():
                     df.at[index, columna] = valor_reemplazo
         return df
 
-    df_areas = rellenar_nulos_unicos(df_areas, "Areas")
-    df_juegos = rellenar_nulos_unicos(df_juegos, "Juegos")"""
+    #df_areas = rellenar_nulos_unicos(df_areas, "Areas")
+    df_juegos = rellenar_nulos_unicos(df_juegos, "Juegos")
+    df_mantenimiento = rellenar_nulos_unicos(df_mantenimiento, "Mantenimiento")
     def contar_nulos(df, nombre):
         # Cargar el CSV
 
@@ -348,16 +397,272 @@ def limpiar_datasets():
         # Imprimir las columnas con valores nulos y la cantidad de nulos por columna
         print(f"Columnas con valores nulos{nombre}:")
         print(columnas_con_nulos)
-
-    contar_nulos(df_areas, "Areas")
-    contar_nulos(df_juegos, "Juegos")
-    contar_nulos(df_mantenimiento, "Mantenimiento")
-    contar_nulos(df_incidencias_usuario, "Incidencias de usuario")
+    #print("Los tipos FECHAS SON:")
+    #print(df_juegos[['fechaInstalacion', 'ultimaFechaMantenimiento']].dtypes)
+    #contar_nulos(df_areas, "Areas")
+    #contar_nulos(df_juegos, "Juegos")
+    #contar_nulos(df_mantenimiento, "Mantenimiento")
+    #contar_nulos(df_incidencias_usuario, "Incidencias de usuario")
     # Guardar el DataFrame limpio en un nuevo archivo CSV
     df_areas.to_csv('areasLimpio.csv', index=False)
     df_juegos.to_csv('juegosLimpio.csv', index=False)
     df_mantenimiento.to_csv('mantenimientoLimpio.csv', index=False)
     df_incidencias_usuario.to_csv('incidenciasUsuarioLimpio.csv', index=False)
 
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client['arqui2']
+    
+    # Eliminar la colección si ya existe
+    if 'Juegos' in db.list_collection_names():
+        db.drop_collection('Juegos')
+        db.drop_collection('Mantenimiento')
+        db.drop_collection('IncidenciasUsuario')
+
+    db.create_collection('Juegos', validator = {
+        "$jsonSchema": {
+            "bsonType": "object",
+            "title": "juegos",
+            "required": ["id", "nombre", "COD_BARRIO", "BARRIO", "COD_DISTRITO", "DISTRITO", "estadoOperativo", "LATITUD", "LONGITUD", "TIPO_VIA", "NOM_VIA", "COD_POSTAL", "fechaInstalacion"],
+            "properties": {
+                "id": {
+                    "bsonType": "string",
+                    "description": "Debe ser un número entero único que identifica cada registro."
+                },
+                "nombre": {
+                    "bsonType": "string",
+                    "description": "Nombre descriptivo del elemento."
+                },
+                "COD_BARRIO": {
+                    "bsonType": "int",
+                    "description": "Código numérico que representa el barrio."
+                },
+                "BARRIO": {
+                    "bsonType": "string",
+                    "description": "Nombre del barrio."
+                },
+                "COD_DISTRITO": {
+                    "bsonType": "int",
+                    "description": "Código numérico que representa el distrito."
+                },
+                "DISTRITO": {
+                    "bsonType": "string",
+                    "description": "Nombre del distrito."
+                },
+                "estadoOperativo": {
+                    "bsonType": "string",
+                    "enum": ["operativo", "inoperativo"],
+                    "description": "Estado del elemento, puede ser 'activo' o 'inactivo'."
+                },
+                "COORD_GIS_X": {
+                    "bsonType": "double",
+                    "description": "Coordenada X en el sistema de referencia."
+                },
+                "COORD_GIS_Y": {
+                    "bsonType": "double",
+                    "description": "Coordenada Y en el sistema de referencia."
+                },
+                "SISTEMA_COORD": {
+                    "bsonType": "string",
+                    "enum": ["etrs89"],
+                    "description": "Sistema de coordenadas utilizado."
+                },
+                "LATITUD": {
+                    "bsonType": "double",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "description": "Latitud en formato decimal."
+                },
+                "LONGITUD": {
+                    "bsonType": "double",
+                    "minimum": -180,
+                    "maximum": 180,
+                    "description": "Longitud en formato decimal."
+                },
+                "TIPO_VIA": {
+                    "bsonType": "string",
+                    "description": "Tipo de vía (ej., calle, avenida)."
+                },
+                "NOM_VIA": {
+                    "bsonType": "string",
+                    "description": "Nombre de la vía."
+                },
+                "NUM_VIA": {
+                    "bsonType": "string",
+                    "description": "Número de la vía."
+                },
+                "COD_POSTAL": {
+                    "bsonType": "string",
+                    #no tiene patron ya que existen codigos desconocidos
+                    "description": "Código postal de 5 dígitos."
+                },
+                "DIRECCION_AUX": {
+                    "bsonType": "string",
+                    "description": "Campo auxiliar para la dirección."
+                },
+                "NDP": {
+                    "bsonType": "string",
+                    "description": "Código numérico o referencia."
+                },
+                "fechaInstalacion": {
+                    "bsonType": "date",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                    "description": "Fecha de instalación en formato YYYY-MM-DD."
+                },
+                "CODIGO_INTERNO": {
+                    "bsonType": "string",
+                    "description": "Código interno único del elemento."
+                },
+                "CONTRATO_COD": {
+                    "bsonType": "string",
+                    "description": "Código de contrato asociado."
+                },
+                "MODELO": {
+                    "bsonType": "string",
+                    "description": "Modelo del elemento."
+                },
+                "tipo_juego": {
+                    "bsonType": "string",
+                    "enum": ["infantiles", "deportivas", "mayores"],
+                    "description": "Tipo de juego o categoría."
+                },
+                "ACCESIBLE": {
+                    "bsonType": "bool",
+                    "description": "Indica si el elemento es accesible o no."
+                },
+                "IndicadorExposicion": {
+                    "bsonType": "string",
+                    "enum": ["bajo", "medio", "alto"],
+                    "description": "Indica si el elemento está expuesto."
+                },
+                "desgasteAcumulado": {
+                    "bsonType": "int",
+                    "description": "Nivel de desgaste acumulado."
+                },
+                "ultimaFechaMantenimiento": {
+                    "bsonType": "date",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                    "description": "Fecha del último mantenimiento en formato ISODate."
+                }
+            }
+        }
+    })
+    collection_juegos = db['Juegos']
+    
+    # Convertir el DataFrame a una lista de diccionarios
+    registros_limpios_juegos_list = df_juegos.to_dict('records')
+    
+    # Insertar los registros en la colección
+    collection_juegos.insert_many(registros_limpios_juegos_list)
+    
+    print("Datos de juegos insertados en MongoDB con éxito.")
+
+    db.create_collection('IncidenciasUsuario', validator = {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "title": "incidencias de los usuarios",
+        "required": ["id", "tipoIncidencia", "fechaReporte", "estado", "UsuarioID", "MantenimientoID", "tiempoResolucion"],
+        "properties": {
+            "id": {
+                "bsonType": "string",
+                "description": "Debe ser un número entero único que identifica cada registro."
+            },
+            "tipoIncidencia": {
+                "bsonType": "string",
+                "enum": ["desgaste", "mal funcionamiento", "rotura", "vandalismo"],
+                "description": "Tipo de incidencia reportada."
+            },
+            "fechaReporte": {
+                "bsonType": "date",
+                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                "description": "Fecha de reporte de la incidencia en formato YYYY-MM-DD."
+            },
+            "estado": {
+                "bsonType": "string",
+                "enum": ["abierta", "cerrada"],
+                "description": "Estado actual de la incidencia."
+            },
+            "UsuarioID": {
+                "bsonType": "array",
+                "description": "Identificador del usuario que reportó la incidencia."
+            },
+            "MantenimientoID": {
+                "bsonType": "string",
+                "description": "Identificador de la tarea de mantenimiento asociada."
+            },
+            "nivelEscalamiento": {
+                "bsonType": "string",
+                "enum": ["bajo", "medio", "alto"],
+                "description": "Nivel de escalamiento de la incidencia."
+            },
+            "tiempoResolucion": {
+                "bsonType": ["int", "null"],
+                "minimum": -1,
+                "description": "Tiempo en horas para la resolución de la incidencia."
+            }
+        }
+    }
+    })
+    collection_incidencias_usuario = db['IncidenciasUsuario']
+    
+    # Convertir el DataFrame a una lista de diccionarios
+    registros_limpios_incidencias_usuario_list = df_incidencias_usuario.to_dict('records')
+    
+    # Insertar los registros en la colección
+    collection_incidencias_usuario.insert_many(registros_limpios_incidencias_usuario_list)
+    
+    print("Datos de incidencias usuario insertados en MongoDB con éxito.")
+
+    db.create_collection('Mantenimiento', validator = {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "title": "mantenimiento",
+        "required": ["id", "fechaIntervencion", "tipoIntervencion", "estadoPrevio", "estadoPosterior", "JuegoID", "Tipo", "Comentarios"],
+        "properties": {
+            "id": {
+                "bsonType": "string",
+                "description": "Identificador único de la intervención de mantenimiento."
+            },
+            "fechaIntervencion": {
+                "bsonType": "date",
+                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                "description": "Fecha de la intervención de mantenimiento en formato YYYY-MM-DD."
+            },
+            "tipoIntervencion": {
+                "bsonType": "string",
+                "enum": ["preventivo", "correctivo", "emergencia"],
+                "description": "Tipo de intervención realizada."
+            },
+            "estadoPrevio": {
+                "bsonType": "string",
+                "description": "Estado del elemento antes de la intervención."
+            },
+            "estadoPosterior": {
+                "bsonType": "string",
+                "description": "Estado del elemento después de la intervención."
+            },
+            "JuegoID": {
+                "bsonType": "string",
+                "description": "Identificador del juego o elemento en el que se realizó el mantenimiento."
+            },
+            "Tipo": {
+                "bsonType": "string",
+                "description": "Tipo de mantenimiento (e.g., preventivo, correctivo)."
+            },
+            "Comentarios": {
+                "bsonType": "string",
+                "description": "Comentarios adicionales sobre la intervención de mantenimiento."
+            }
+        }
+    }
+    })
+    collection_mantenimiento = db['Mantenimiento']
+    
+    # Convertir el DataFrame a una lista de diccionarios
+    registros_limpios_mantenimiento_list = df_mantenimiento.to_dict('records')
+    
+    # Insertar los registros en la colección
+    collection_mantenimiento.insert_many(registros_limpios_mantenimiento_list)
+    
+    print("Datos de mantenimiento usuario insertados en MongoDB con éxito.")
 # Ejecutar la función
 limpiar_datasets()

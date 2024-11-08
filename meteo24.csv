@@ -1,4 +1,4 @@
-FECHA,TEMPERATURA,PRECIPITACION,VIENTO,Codigo Postal
+fecha,temperatura,precipitacion,vientosFuertes,codigoPostal
 2024-01-01,4.5,0.0,False,28025
 2024-01-02,3.2,0.1,False,28025
 2024-01-03,7.6,4.2,False,28025
