@@ -141,7 +141,7 @@ def limpiar_datasets():
         if pd.isnull(row['DISTRITO']) else row['DISTRITO'], axis=1)
 
     # Ejecutar la función para llenar COD_DISTRITO y DISTRITO nulos
-    llenar_cod_distrito_distrito(df_areas)
+    #llenar_cod_distrito_distrito(df_areas)
     llenar_cod_distrito_distrito(df_juegos)
     def actualizar_vias_desconocidas():
         # Función para reemplazar los valores nulos o vacíos de las columnas de vías con el formato adecuado
@@ -164,18 +164,21 @@ def limpiar_datasets():
     def convertir_fecha(fecha):
         # Intentar con varios formatos comunes
         for formato in ("%Y/%m/%d", "%d-%m-%Y", "%m-%d-%Y", "%Y-%m-%d", "%d/%m/%Y", "%y/%m/%d", "%y-%m-%d"):
-            if fecha!=None:
-                try:
-                    fecha_convertida = pd.to_datetime(fecha, format=formato)
-                    return fecha_convertida.strftime("%Y-%m-%d")  # Formato sin hora
-                except ValueError:
-                    continue
-            else:
-                return None
+            try:
+                fecha_convertida = pd.to_datetime(fecha, format=formato, errors='coerce')
+                fecha_convertida = fecha_convertida.strftime("%Y-%m-%d")
+                fecha_convertida = pd.to_datetime(fecha_convertida)
+                return fecha_convertida # Formato sin hora
+            except ValueError:
+                continue
         # Quitar la parte de la hora si tiene el formato "yyyy-mm-dd HH:MM:SS"
         if isinstance(fecha, str) and " " in fecha:
-            return fecha.split(" ")[0]
-        return fecha  # Retornar la fecha sin cambios si ningún formato funciona
+            fecha_sin_hora = fecha.split(" ")[0]
+            try:
+                return pd.to_datetime(fecha_sin_hora)
+            except ValueError:
+                return None  # Retorna None si no se puede convertir
+        return None  # Retorna None si ningún formato funciona
 
     df_areas['FECHA_INSTALACION'] = df_areas['FECHA_INSTALACION'].apply(convertir_fecha)
     df_juegos['FECHA_INSTALACION'] = df_juegos['FECHA_INSTALACION'].apply(convertir_fecha)
@@ -205,7 +208,7 @@ def limpiar_datasets():
         df['FECHA_INSTALACION'] = df.apply(reemplazar_fecha, axis=1, fecha_minima=fecha_mas_antigua)
         df['FECHA_INSTALACION'] = df['FECHA_INSTALACION'].apply(convertir_fecha)
     # Ejecutar la función
-    actualizar_fecha_desde_aux(df_areas, df_juegos)
+    #actualizar_fecha_desde_aux(df_areas, df_juegos)
     actualizar_fecha_desde_aux(df_juegos, df_areas)
 
     def modificar_cod_interno_incorrecto(df):
@@ -217,9 +220,9 @@ def limpiar_datasets():
         )
 
     # Ejecutar la función
-    modificar_cod_interno_incorrecto(df_areas)
+    #modificar_cod_interno_incorrecto(df_areas)
     modificar_cod_interno_incorrecto(df_juegos)
-
+    df_juegos['COD_POSTAL'] = df_juegos['COD_POSTAL'].apply(lambda x: None if x == '0' else x)
     def actualizar_cod_postal_desde_aux(df,df_aux):
         # Buscar el primer COD_POSTAL válido para cada NDP en el dataset de juegos
         cod_postales_aux = df_aux.dropna(subset=['COD_POSTAL']).groupby('NDP')['COD_POSTAL'].first()
@@ -241,7 +244,7 @@ def limpiar_datasets():
         df['COD_POSTAL'] = df.apply(reemplazar_cod_postal, axis=1)
 
     # Ejecutar la función
-    actualizar_cod_postal_desde_aux(df_areas, df_juegos)
+    #actualizar_cod_postal_desde_aux(df_areas, df_juegos)
     actualizar_cod_postal_desde_aux(df_juegos, df_areas)
 
 
@@ -261,12 +264,12 @@ def limpiar_datasets():
         df['IndicadorExposicion'] = np.random.choice(['bajo', 'medio', 'alto'], len(df))
         # Calcular desgaste acumulado
         for index, row in df.iterrows():
-            if 'JuegoID' in df_mantenimientos.columns and 'ID' in row:
-                num_mantenimientos = df_mantenimientos[df_mantenimientos['JuegoID'] == row['ID']].shape[0]
+            if 'JuegoID' in df_mantenimientos.columns and 'id' in row:
+                num_mantenimientos = df_mantenimientos[df_mantenimientos['JuegoID'] == row['id']].shape[0]
                 tiempo_de_uso = np.random.randint(1, 16)
                 value_exposicion = {'bajo': 1, 'medio': 2, 'alto': 3}[row['IndicadorExposicion']]
                 df.at[index, 'desgasteAcumulado'] = ((tiempo_de_uso * value_exposicion) - (num_mantenimientos * 100))
-                ultima_fecha = df_mantenimientos[df_mantenimientos['JuegoID'] == row['ID']]['FECHA_INTERVENCION'].max()
+                ultima_fecha = df_mantenimientos[df_mantenimientos['JuegoID'] == row['id']]['FECHA_INTERVENCION'].max()
                 if pd.notnull(ultima_fecha):
                     df.at[index, 'ultimaFechaMantenimiento'] = pd.to_datetime(ultima_fecha).strftime("%Y-%m-%d")
                 else:
@@ -319,15 +322,28 @@ def limpiar_datasets():
 
     df_incidencias_usuario = normalizar_incidencias_usuarios(df_incidencias_usuario, df_mantenimiento)
 
-    def quitar_decimal_ndp(df):
+    def quitar_decimal(df):
         df['NDP'] = df['NDP'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
-        df['COD_DISTRITO'] = df['COD_DISTRITO'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['desgasteAcumulado'] = df['desgasteAcumulado'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        df['desgasteAcumulado'] = pd.to_numeric(df['desgasteAcumulado'], errors='coerce').fillna(0).astype(int)
+        df['COD_DISTRITO'] = pd.to_numeric(df['COD_DISTRITO'], errors='coerce').fillna(0).astype(int)
         df['COD_POSTAL'] = df['COD_POSTAL'].apply(lambda x: str(x).replace('.0', '') if pd.notna(x) and x != '' else x)
+        # Aplicar la conversión en las columnas de fecha
+        df['fechaInstalacion'] = df['fechaInstalacion'].apply(convertir_fecha)
+        df['ultimaFechaMantenimiento'] = df['ultimaFechaMantenimiento'].apply(convertir_fecha)
+
         return df
 
     # Aplicar la función a los DataFrames
-    df_juegos = quitar_decimal_ndp(df_juegos)
-    """def rellenar_nulos_unicos(df, dataset_nombre):
+    df_juegos = quitar_decimal(df_juegos)
+    def rellenar_coords(df):
+        for index, row in df.iterrows():
+            if row['id'] == 58390:
+                df.at[index, 'COORD_GIS_X'] = (440282.09 + 440327.28)/2
+                df.at[index, 'COORD_GIS_Y'] = (4476028.16 + 4475886.97)/2
+        return df
+    df_juegos = rellenar_coords(df_juegos)
+    def rellenar_nulos_unicos(df, dataset_nombre):
         for index, row in df.iterrows():
             for columna in df.columns:
                 if pd.isnull(row[columna]):
@@ -341,8 +357,8 @@ def limpiar_datasets():
                     df.at[index, columna] = valor_reemplazo
         return df
 
-    df_areas = rellenar_nulos_unicos(df_areas, "Areas")
-    df_juegos = rellenar_nulos_unicos(df_juegos, "Juegos")"""
+    #df_areas = rellenar_nulos_unicos(df_areas, "Areas")
+    df_juegos = rellenar_nulos_unicos(df_juegos, "Juegos")
     def contar_nulos(df, nombre):
         # Cargar el CSV
 
@@ -355,11 +371,12 @@ def limpiar_datasets():
         # Imprimir las columnas con valores nulos y la cantidad de nulos por columna
         print(f"Columnas con valores nulos{nombre}:")
         print(columnas_con_nulos)
-
-    contar_nulos(df_areas, "Areas")
-    contar_nulos(df_juegos, "Juegos")
-    contar_nulos(df_mantenimiento, "Mantenimiento")
-    contar_nulos(df_incidencias_usuario, "Incidencias de usuario")
+    print("Los tipos FECHAS SON:")
+    print(df_juegos[['fechaInstalacion', 'ultimaFechaMantenimiento']].dtypes)
+    #contar_nulos(df_areas, "Areas")
+    #contar_nulos(df_juegos, "Juegos")
+    #contar_nulos(df_mantenimiento, "Mantenimiento")
+    #contar_nulos(df_incidencias_usuario, "Incidencias de usuario")
     # Guardar el DataFrame limpio en un nuevo archivo CSV
     df_areas.to_csv('areasLimpio.csv', index=False)
     df_juegos.to_csv('juegosLimpio.csv', index=False)
@@ -447,8 +464,8 @@ def limpiar_datasets():
                     "description": "Número de la vía."
                 },
                 "COD_POSTAL": {
-                    "bsonType": "int",
-                    "pattern": "^[0-9]{5}$",
+                    "bsonType": "string",
+                    #no tiene patron ya que existen codigos desconocidos
                     "description": "Código postal de 5 dígitos."
                 },
                 "DIRECCION_AUX": {
@@ -456,7 +473,7 @@ def limpiar_datasets():
                     "description": "Campo auxiliar para la dirección."
                 },
                 "NDP": {
-                    "bsonType": "int",
+                    "bsonType": "string",
                     "description": "Código numérico o referencia."
                 },
                 "fechaInstalacion": {
@@ -496,6 +513,7 @@ def limpiar_datasets():
                 },
                 "ultimaFechaMantenimiento": {
                     "bsonType": "date",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
                     "description": "Fecha del último mantenimiento en formato ISODate."
                 }
             }
