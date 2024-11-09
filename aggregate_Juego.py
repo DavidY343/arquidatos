@@ -14,15 +14,55 @@ def crear_agregado_juego():
             }
         },
         {
-        '$lookup': {
-            'from': 'IncidenciasUsuario',
-            'let': {'mantenimientoId': '$mantenimientos.id'},
-            'pipeline': [
-                {'$unwind': '$MantenimientoID'},
-                {'$match': {'$expr': {'$eq': ['$MantenimientoID', '$$mantenimientoId']}}}
-            ],
-            'as': 'incidencias'
-        }
+            '$unwind': {
+                'path': '$mantenimientos',
+                'preserveNullAndEmptyArrays': True
+            }
+        },
+        {
+            '$lookup': {
+                'from': 'IncidenciasUsuario',
+                'let': {'mantenimientoId': '$mantenimientos.id'},
+                'pipeline': [
+                    {'$unwind': '$MantenimientoID'},
+                    {'$match': {'$expr': {'$eq': ['$MantenimientoID', '$$mantenimientoId']}}}
+                ],
+                'as': 'incidencias'
+            }
+        },
+        {
+            '$group': {
+                '_id': '$_id',
+                'id': {'$first': '$id'},
+                'nombre': {'$first': '$nombre'},
+                'COD_BARRIO': {'$first': '$COD_BARRIO'},
+                'BARRIO': {'$first': '$BARRIO'},
+                'COD_DISTRITO': {'$first': '$COD_DISTRITO'},
+                'DISTRITO': {'$first': '$DISTRITO'},
+                'estadoOperativo': {'$first': '$estadoOperativo'},
+                'COORD_GIS_X': {'$first': '$COORD_GIS_X'},
+                'COORD_GIS_Y': {'$first': '$COORD_GIS_Y'},
+                'SISTEMA_COORD': {'$first': '$SISTEMA_COORD'},
+                'LATITUD': {'$first': '$LATITUD'},
+                'LONGITUD': {'$first': '$LONGITUD'},
+                'TIPO_VIA': {'$first': '$TIPO_VIA'},
+                'NOM_VIA': {'$first': '$NOM_VIA'},
+                'NUM_VIA': {'$first': '$NUM_VIA'},
+                'COD_POSTAL': {'$first': '$COD_POSTAL'},
+                'DIRECCION_AUX': {'$first': '$DIRECCION_AUX'},
+                'NDP': {'$first': '$NDP'},
+                'fechaInstalacion': {'$first': '$fechaInstalacion'},
+                'CODIGO_INTERNO': {'$first': '$CODIGO_INTERNO'},
+                'CONTRATO_COD': {'$first': '$CONTRATO_COD'},
+                'modelo': {'$first': '$modelo'},
+                'tipo': {'$first': '$tipo'},
+                'accesibilidad': {'$first': '$accesibilidad'},
+                'indicadorExposicion': {'$first': '$indicadorExposicion'},
+                'coordenadasGPS': {'$first': '$coordenadasGPS'},
+                'desgasteAcumulado': {'$first': '$desgasteAcumulado'},
+                'mantenimientos': {'$push': '$mantenimientos'},
+                'incidencias': {'$push': '$incidencias'}
+            }
         },
         {
             '$project': {
@@ -33,14 +73,6 @@ def crear_agregado_juego():
                 'COD_DISTRITO': 1,
                 'DISTRITO': 1,
                 'estadoOperativo': 1,
-                'COORD_GIS_X': 1,
-                'COORD_GIS_Y': 1,
-                'SISTEMA_COORD': 1,
-                'LATITUD': 1,
-                'LONGITUD': 1,
-                'TIPO_VIA': 1,
-                'NOM_VIA': 1,
-                'NUM_VIA': 1,
                 'COD_POSTAL': 1,
                 'DIRECCION_AUX': 1,
                 'NDP': 1,
@@ -59,6 +91,8 @@ def crear_agregado_juego():
                         'input': '$incidencias',
                         'as': 'incidencia',
                         'in': {
+                            '_id': '$$incidencia._id',
+                            'mantenimientoId': '$$incidencia.MantenimientoID',
                             'tipoIncidencia': '$$incidencia.tipoIncidencia',
                             'estado': '$$incidencia.estado',
                             'fechaReporte': '$$incidencia.fechaReporte'
