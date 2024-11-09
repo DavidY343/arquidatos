@@ -7,7 +7,7 @@ def crear_agregado():
     pipeline = [
         {
             '$lookup': {
-                'from': 'Juego',
+                'from': 'Juegos',
                 'localField': 'NDP',
                 'foreignField': 'NDP',
                 'as': 'juegos'
@@ -15,8 +15,8 @@ def crear_agregado():
         },
         {
             '$lookup': {
-                'from': 'IncidentesSeguridad',
-                'localField': 'ID',
+                'from': 'IncidenteSeguridad',
+                'localField': 'nombre',
                 'foreignField': 'AreaRecreativaID',
                 'as': 'incidentes'
             }
@@ -25,43 +25,27 @@ def crear_agregado():
             '$lookup': {
                 'from': 'RegistroClima',
                 'localField': 'COD_POSTAL',
-                'foreignField': 'Codigo Postal',
+                'foreignField': 'codigoPostal',
                 'as': 'clima'
             }
         },
         {
             '$lookup': {
                 'from': 'EncuestaSatisfaccion',
-                'localField': 'ID',
+                'localField': 'nombre',
                 'foreignField': 'AreaRecreativaID',
                 'as': 'encuestas'
             }
         },
         {
             '$project': {
-                'ID': 1,
-                'DESC_CLASIFICACION': 1,
-                'COD_BARRIO': 1,
-                'BARRIO': 1,
-                'COD_DISTRITO': 1,
-                'DISTRITO': 1,
-                'ESTADO': 1,
-                'COORD_GIS_X': 1,
-                'COORD_GIS_Y': 1,
-                'SISTEMA_COORD': 1,
-                'LATITUD': 1,
-                'LONGITUD': 1,
-                'TIPO_VIA': 1,
-                'NOM_VIA': 1,
-                'NUM_VIA': 1,
+                'nombre': 1,
+                'barrio': 1,
+                'distrito': 1,
+                'estadoOperativo': 1,
+                'coordenadasGPS': 1,
                 'COD_POSTAL': 1,
-                'DIRECCION_AUX': 1,
-                'NDP': 1,
-                'FECHA_INSTALACION': 1,
-                'CODIGO_INTERNO': 1,
-                'CONTRATO_COD': 1,
-                'TOTAL_ELEM': 1,
-                'tipo': 1,
+                'fechaInstalacion': 1,
                 'capacidadMax': 1,
                 'estadoGlobalArea': 1,
                 'juegos': 1,
@@ -70,9 +54,9 @@ def crear_agregado():
                         'input': '$incidentes',
                         'as': 'incidente',
                         'in': {
-                            'TIPO_INCIDENTE': '$$incidente.TIPO_INCIDENTE',
-                            'GRAVEDAD': '$$incidente.GRAVEDAD',
-                            'FECHA_REPORTE': '$$incidente.FECHA_REPORTE'
+                            'tipoIncidente': '$$incidente.tipoIncidente',
+                            'gravedad': '$$incidente.gravedad',
+                            'fechaReporte': '$$incidente.fechaReporte'
                         }
                     }
                 },
@@ -85,7 +69,7 @@ def crear_agregado():
         }
     ]
     
-    db['AreasRecreativa'].aggregate(pipeline)
+    db['AreaRecreativa'].aggregate(pipeline)
     
     print("Agregado ÁreaRecreativa_Clima creado con éxito.")
 

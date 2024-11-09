@@ -1,0 +1,64 @@
+db.AreaRecreativa.aggregate([
+    {
+        $lookup: {
+            from: "Juegos",
+            localField: "NDP",
+            foreignField: "NDP",
+            as: "juegos"
+        }
+    },
+    {
+        $lookup: {
+            from: "IncidenteSeguridad",
+            localField: "nombre",
+            foreignField: "AreaRecreativaID",
+            as: "incidentes"
+        }
+    },
+    {
+        $lookup: {
+            from: "RegistroClima",
+            localField: "COD_POSTAL",
+            foreignField: "codigoPostal",
+            as: "clima"
+        }
+    },
+    {
+        $lookup: {
+            from: "EncuestaSatisfaccion",
+            localField: "nombre",
+            foreignField: "AreaRecreativaID",
+            as: "encuestas"
+        }
+    },
+    {
+        $project: {
+            nombre: 1,
+            barrio: 1,
+            distrito: 1,
+            estadoOperativo: 1,
+            coordenadasGPS: 1,
+            COD_POSTAL: 1,
+            fechaInstalacion: 1,
+            capacidadMax: 1,
+            estadoGlobalArea: 1,
+            juegos: 1,
+            incidentes: {
+                $map: {
+                    input: "$incidentes",
+                    as: "incidente",
+                    in: {
+                        tipoIncidente: "$$incidente.tipoIncidente",
+                        gravedad: "$$incidente.gravedad",
+                        fechaReporte: "$$incidente.fechaReporte"
+                    }
+                }
+            },
+            clima: 1,
+            encuestas: 1
+        }
+    },
+    {
+        $out: "AreaRecreativa_Clima"
+    }
+])
