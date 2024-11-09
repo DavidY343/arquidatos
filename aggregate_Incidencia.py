@@ -2,7 +2,7 @@ from pymongo import MongoClient
 
 def crear_agregado():
     client = MongoClient('mongodb://localhost:27017/')
-    db = client['arqui']
+    db = client['arqui2']
     
     pipeline = [
         # Convertir UsuarioID (lista de IDs) en una relación uno a muchos con la colección Usuarios
@@ -21,7 +21,7 @@ def crear_agregado():
         {
             '$project': {
                 'id': 1,
-                'TIPO_INCIDENCIA': 1,
+                'tipoIncidencia': 1,
                 'fechaReporte': 1,
                 'estado': 1,
                 'UsuarioID': 1,  # Mantén esto solo si lo necesitas para referencia

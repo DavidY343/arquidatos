@@ -306,6 +306,7 @@ def limpiar_datasets():
         df_incidencias_usuario['id'] = df_incidencias_usuario['id'].astype(str)
         #transformamos los valores de UsuarioID a listas
         df_incidencias_usuario['UsuarioID'] = df_incidencias_usuario['UsuarioID'].apply(lambda x: ast.literal_eval(x.replace('"', '')) if isinstance(x, str) else [])
+        df_user_incidences['MantenimientoID'] = df_user_incidences['MantenimientoID'].apply(lambda x: ast.literal_eval(x.replace('"', '')) if isinstance(x, str) else [])
         df_user_incidences.rename(columns={'FECHA_REPORTE': 'fechaReporte'}, inplace=True)
         df_user_incidences.rename(columns={'ESTADO': 'estado'}, inplace=True)
         df_user_incidences.rename(columns={'TIPO_INCIDENCIA': 'tipoIncidencia'}, inplace=True)
@@ -313,8 +314,9 @@ def limpiar_datasets():
                                                                    size=len(df_user_incidences))
 
         for index, row in df_user_incidences.iterrows():
-            if row['estado'] == 'cerrada' and pd.notnull(row['MantenimientoID']):
-                mantenimiento_ids = row['MantenimientoID'].strip('[]').replace("'", "").split(', ')
+            if row['estado'] == 'cerrada' and isinstance(row['MantenimientoID'], list) and len(row['MantenimientoID']) > 0:
+            # Asegurarse de que MantenimientoID sea una lista
+                mantenimiento_ids = row['MantenimientoID']
                 fechas_resolucion = df_mantenimientos[df_mantenimientos['id'].isin(mantenimiento_ids)]['fechaIntervencion']
                 ultima_fecha_resolucion = fechas_resolucion.max()
                 if pd.notnull(ultima_fecha_resolucion):
@@ -404,7 +406,7 @@ def limpiar_datasets():
     #contar_nulos(df_mantenimiento, "Mantenimiento")
     #contar_nulos(df_incidencias_usuario, "Incidencias de usuario")
     # Guardar el DataFrame limpio en un nuevo archivo CSV
-    df_areas.to_csv('areasLimpio.csv', index=False)
+    #df_areas.to_csv('areasLimpio.csv', index=False)
     df_juegos.to_csv('juegosLimpio.csv', index=False)
     df_mantenimiento.to_csv('mantenimientoLimpio.csv', index=False)
     df_incidencias_usuario.to_csv('incidenciasUsuarioLimpio.csv', index=False)
@@ -586,7 +588,7 @@ def limpiar_datasets():
                 "description": "Identificador del usuario que reportó la incidencia."
             },
             "MantenimientoID": {
-                "bsonType": "string",
+                "bsonType": "array",
                 "description": "Identificador de la tarea de mantenimiento asociada."
             },
             "nivelEscalamiento": {
