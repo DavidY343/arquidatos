@@ -260,15 +260,17 @@ def limpiar_datasets():
         df.rename(columns={'FECHA_INSTALACION': 'fechaInstalacion'}, inplace=True)
         # Rellenar las líneas vacías de la columna 'accesibilidad' con 'no'
         df_juegos['accesibilidad'] = df_juegos['accesibilidad'].fillna('no')
+        df_juegos['accesibilidad'] = df_juegos['accesibilidad'].apply(lambda x: True if x == 'si' else False)
         if df is None or df_mantenimientos is None:
             raise ValueError("DataFrames cannot be None")
-        df['IndicadorExposicion'] = np.random.choice(['bajo', 'medio', 'alto'], len(df))
+        df['indicadorExposicion'] = np.random.choice(['bajo', 'medio', 'alto'], len(df))
         # Calcular desgaste acumulado
         for index, row in df.iterrows():
+            df.at[index, 'coordenadasGPS'] = f"{row['LATITUD']} {row['LONGITUD']}"
             if 'JuegoID' in df_mantenimientos.columns and 'id' in row:
                 num_mantenimientos = df_mantenimientos[df_mantenimientos['JuegoID'] == row['id']].shape[0]
                 tiempo_de_uso = np.random.randint(1, 16)
-                value_exposicion = {'bajo': 1, 'medio': 2, 'alto': 3}[row['IndicadorExposicion']]
+                value_exposicion = {'bajo': 1, 'medio': 2, 'alto': 3}[row['indicadorExposicion']]
                 df.at[index, 'desgasteAcumulado'] = ((tiempo_de_uso * value_exposicion) - (num_mantenimientos * 100))
                 ultima_fecha = df_mantenimientos[df_mantenimientos['JuegoID'] == row['id']]['FECHA_INTERVENCION'].max()
                 if pd.notnull(ultima_fecha):
@@ -424,7 +426,11 @@ def limpiar_datasets():
         "$jsonSchema": {
             "bsonType": "object",
             "title": "juegos",
-            "required": ["id", "nombre", "COD_BARRIO", "BARRIO", "COD_DISTRITO", "DISTRITO", "estadoOperativo", "LATITUD", "LONGITUD", "TIPO_VIA", "NOM_VIA", "COD_POSTAL", "fechaInstalacion"],
+            "required": ["id", "nombre", "COD_BARRIO", "BARRIO", "COD_DISTRITO", "DISTRITO", "estadoOperativo",
+            "COORD_GIS_X", "COORD_GIS_Y", "coordenadasGPS", "SISTEMA_COORD", "LATITUD", "LONGITUD",
+            "TIPO_VIA", "NOM_VIA", "NUM_VIA", "COD_POSTAL", "DIRECCION_AUX", "NDP", "fechaInstalacion",
+            "CODIGO_INTERNO", "CONTRATO_COD", "modelo", "tipo", "accesibilidad", "indicadorExposicion",
+            "desgasteAcumulado", "ultimaFechaMantenimiento"],
             "properties": {
                 "id": {
                     "bsonType": "string",
@@ -462,6 +468,10 @@ def limpiar_datasets():
                 "COORD_GIS_Y": {
                     "bsonType": "double",
                     "description": "Coordenada Y en el sistema de referencia."
+                },
+                "coordenadasGPS": {
+                    "bsonType": "string",
+                    "description": "Coordenadas GPS en formato 'latitud longitud'."
                 },
                 "SISTEMA_COORD": {
                     "bsonType": "string",
@@ -518,20 +528,20 @@ def limpiar_datasets():
                     "bsonType": "string",
                     "description": "Código de contrato asociado."
                 },
-                "MODELO": {
+                "modelo": {
                     "bsonType": "string",
                     "description": "Modelo del elemento."
                 },
-                "tipo_juego": {
+                "tipo": {
                     "bsonType": "string",
                     "enum": ["infantiles", "deportivas", "mayores"],
                     "description": "Tipo de juego o categoría."
                 },
-                "ACCESIBLE": {
+                "accesibilidad": {
                     "bsonType": "bool",
                     "description": "Indica si el elemento es accesible o no."
                 },
-                "IndicadorExposicion": {
+                "indicadorExposicion": {
                     "bsonType": "string",
                     "enum": ["bajo", "medio", "alto"],
                     "description": "Indica si el elemento está expuesto."
