@@ -67,7 +67,7 @@ def limpiar_datos_meteo24(nombre_archivo, estaciones_archivo):
     # Convertir el diccionario a una lista de registros
     registros_limpios_list = [
         {
-            'fecha': fecha,
+            'fecha': pd.to_datetime(fecha),
             'temperatura': float(datos['TEMPERATURA']) if not pd.isna(datos['TEMPERATURA']) else float(mediana_temperatura),
             'precipitacion': float(datos['PRECIPITACION']) if not pd.isna(datos['PRECIPITACION']) else 0.0,
             'vientosFuertes': bool(datos['VIENTO']) if not pd.isna(datos['VIENTO']) else False,
@@ -97,9 +97,9 @@ def limpiar_datos_meteo24(nombre_archivo, estaciones_archivo):
             "required": ["fecha", "temperatura", "precipitacion", "vientosFuertes", "codigoPostal"],
             "properties": {
                 "fecha": {
-                    "bsonType": "string",
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                    "description": "Debe ser una cadena en formato de fecha (YYYY-MM-DD) y es obligatorio"
+                    "bsonType": "date",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                    "description": "Fecha de instalación en formato YYYY-MM-DD."
                 },
                 "temperatura": {
                     "bsonType": "double",
@@ -147,7 +147,7 @@ def limpiar_usuarios(nombre_archivo):
     
     # Identificar y consolidar registros duplicados
     df.drop_duplicates(inplace=True)
-    
+    df = df.drop_duplicates(subset=['NIF'], keep='first')
     # Convertir todos los valores a minúsculas
     df['NIF'] = df['NIF'].str.lower()
     df['NOMBRE'] = df['NOMBRE'].str.lower()
