@@ -12,10 +12,12 @@ def insertar_csv_en_mongodb(nombre_archivo_csv, nombre_bd, nombre_coleccion, val
     if nombre_coleccion == "EncuestaSatifaccion":
         df['id'] = df['id'].astype(str)
         df['fechaEncuesta'] = pd.to_datetime(df['fechaEncuesta'], errors='coerce')
+        df['AreaRecreativaID'] = df['AreaRecreativaID'].astype(str)
 
     if nombre_coleccion == "IncidenteSeguridad":
         df['id'] = df['id'].astype(str)
         df['fechaReporte'] = pd.to_datetime(df['fechaReporte'], errors='coerce')
+        df['AreaRecreativaID'] = df['AreaRecreativaID'].astype(str)
 
     # Convertir el DataFrame a una lista de diccionarios
     registros = df.to_dict('records')
@@ -205,7 +207,7 @@ if __name__ == "__main__":
                 "description": "Gravedad del incidente. Valores permitidos: Media, Baja, Alta, Critica."
                 },
                 "AreaRecreativaID": {
-                "bsonType": "int",
+                "bsonType": "string",
                 "description": "ID del área recreativa asociada al incidente. Debe ser un número entero."
                 }
             }
@@ -238,7 +240,7 @@ if __name__ == "__main__":
                 "description": "Comentarios opcionales sobre la evaluación"
                 },
                 "AreaRecreativaID": {
-                "bsonType": "int",
+                "bsonType": "string",
                 "description": "Debe ser un entero que referencia el área recreativa"
                 },
                 "fechaEncuesta": {
