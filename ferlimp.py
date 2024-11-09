@@ -389,6 +389,11 @@ def limpiar_datasets():
     #df_areas = rellenar_nulos_unicos(df_areas, "Areas")
     df_juegos = rellenar_nulos_unicos(df_juegos, "Juegos")
     df_mantenimiento = rellenar_nulos_unicos(df_mantenimiento, "Mantenimiento")
+
+    #eliminamos filas duplicadas
+    df_juegos = df_juegos.drop_duplicates(subset=['id'], keep='first')
+    df_mantenimiento = df_mantenimiento.drop_duplicates(subset=['id'], keep='first')
+    df_incidencias_usuario = df_incidencias_usuario.drop_duplicates(subset=['id'], keep='first')
     def contar_nulos(df, nombre):
         # Cargar el CSV
 
@@ -458,7 +463,7 @@ def limpiar_datasets():
                 },
                 "estadoOperativo": {
                     "bsonType": "string",
-                    "enum": ["operativo", "inoperativo"],
+                    "enum": ["operativo", "inoperativo","en reparacion"],
                     "description": "Estado del elemento, puede ser 'activo' o 'inactivo'."
                 },
                 "COORD_GIS_X": {
