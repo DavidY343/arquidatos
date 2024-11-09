@@ -5,7 +5,6 @@ def crear_agregado():
     
     pipeline = [
         {
-            # Unir juegos con registros de mantenimiento
             '$lookup': {
                 'from': 'Mantenimiento',
                 'localField': 'id',
@@ -17,6 +16,11 @@ def crear_agregado():
             '$unwind': {
                 'path': '$mantenimientos',
                 'preserveNullAndEmptyArrays': True
+            }
+        },
+        {
+            '$addFields': {
+                'mantenimientos._id': '$mantenimientos.id'
             }
         },
         {
@@ -32,66 +36,47 @@ def crear_agregado():
         },
         {
             '$group': {
-                '_id': '$_id',
-                'id': {'$first': '$id'},
+                '_id': '$id',
                 'nombre': {'$first': '$nombre'},
-                'COD_BARRIO': {'$first': '$COD_BARRIO'},
-                'BARRIO': {'$first': '$BARRIO'},
-                'COD_DISTRITO': {'$first': '$COD_DISTRITO'},
-                'DISTRITO': {'$first': '$DISTRITO'},
-                'estadoOperativo': {'$first': '$estadoOperativo'},
-                'COORD_GIS_X': {'$first': '$COORD_GIS_X'},
-                'COORD_GIS_Y': {'$first': '$COORD_GIS_Y'},
-                'SISTEMA_COORD': {'$first': '$SISTEMA_COORD'},
-                'LATITUD': {'$first': '$LATITUD'},
-                'LONGITUD': {'$first': '$LONGITUD'},
-                'TIPO_VIA': {'$first': '$TIPO_VIA'},
-                'NOM_VIA': {'$first': '$NOM_VIA'},
-                'NUM_VIA': {'$first': '$NUM_VIA'},
-                'COD_POSTAL': {'$first': '$COD_POSTAL'},
-                'DIRECCION_AUX': {'$first': '$DIRECCION_AUX'},
-                'NDP': {'$first': '$NDP'},
-                'fechaInstalacion': {'$first': '$fechaInstalacion'},
-                'CODIGO_INTERNO': {'$first': '$CODIGO_INTERNO'},
-                'CONTRATO_COD': {'$first': '$CONTRATO_COD'},
                 'modelo': {'$first': '$modelo'},
-                'tipo': {'$first': '$tipo'},
+                'estadoOperativo': {'$first': '$estadoOperativo'},
                 'accesibilidad': {'$first': '$accesibilidad'},
-                'indicadorExposicion': {'$first': '$indicadorExposicion'},
-                'coordenadasGPS': {'$first': '$coordenadasGPS'},
+                'fechaInstalacion': {'$first': '$fechaInstalacion'},
+                'tipo': {'$first': '$tipo'},
                 'desgasteAcumulado': {'$first': '$desgasteAcumulado'},
+                'indicadorExposicion': {'$first': '$indicadorExposicion'},
+                'ultimaFechaMantenimiento': {'$first': '$ultimaFechaMantenimiento'},
                 'mantenimientos': {'$push': '$mantenimientos'},
                 'incidencias': {'$push': '$incidencias'}
             }
         },
         {
             '$project': {
-                'id': '$_id',
+                'id': 1,
                 'nombre': 1,
-                'COD_BARRIO': 1,
-                'BARRIO': 1,
-                'COD_DISTRITO': 1,
-                'DISTRITO': 1,
                 'estadoOperativo': 1,
-                'COD_POSTAL': 1,
-                'DIRECCION_AUX': 1,
-                'NDP': 1,
                 'fechaInstalacion': 1,
-                'CODIGO_INTERNO': 1,
-                'CONTRATO_COD': 1,
                 'modelo': 1,
                 'tipo': 1,
                 'accesibilidad': 1,
                 'indicadorExposicion': 1,
-                'coordenadasGPS': 1,
                 'desgasteAcumulado': 1,
-                'mantenimientos': 1,
+                'ultimaFechaMantenimiento': 1,
+                'mantenimientos': {
+                    '$map': {
+                        'input': '$mantenimientos',
+                        'as': 'mantenimiento',
+                        'in': {
+                            '_id': '$$mantenimiento._id',
+                        }
+                    }
+                },
                 'incidencias': {
                     '$map': {
                         'input': '$incidencias',
                         'as': 'incidencia',
                         'in': {
-                            '_id': '$$incidencia._id',
+                            '_id': '$$incidencia.id',
                             'mantenimientoId': '$$incidencia.MantenimientoID',
                             'tipoIncidencia': '$$incidencia.tipoIncidencia',
                             'estado': '$$incidencia.estado',
@@ -107,7 +92,7 @@ def crear_agregado():
     ]
     
     db['Juegos'].aggregate(pipeline)
-    print("Agregado Juego creado con éxito.")
+    print("Agregado Juego creado con Ã©xito.")
 
 if __name__ == "__main__":
     crear_agregado()
