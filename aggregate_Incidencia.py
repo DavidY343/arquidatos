@@ -12,7 +12,7 @@ def crear_agregado():
                 'let': { 'usuario_ids': "$UsuarioID" },  # IDs de usuarios en la incidencia como lista
                 'pipeline': [
                     { '$match': { '$expr': { '$in': [ "$NIF", "$$usuario_ids" ] } } },
-                    { '$project': { 'NIF': 1, 'NOMBRE': 1, 'EMAIL': 1, 'TELEFONO': 1 } }
+                    { '$project': { 'NIF': 1, 'nombre': 1, 'email': 1, 'telefono': 1 } }
                 ],
                 'as': 'usuarios'
             }
@@ -24,7 +24,6 @@ def crear_agregado():
                 'tipoIncidencia': 1,
                 'fechaReporte': 1,
                 'estado': 1,
-                'UsuarioID': 1,  # Mantén esto solo si lo necesitas para referencia
                 'MantenimientoID': 1,
                 'nivelEscalamiento': 1,
                 'tiempoResolucion': 1,

@@ -2,11 +2,11 @@ import pandas as pd
 
 def comprobar_ids_repetidos():
     # Cargar los CSV
-    df_incidencias_usuario = pd.read_csv('incidenciasUsuarioLimpio.csv')
-    df_mantenimiento = pd.read_csv('mantenimientoLimpio.csv')
-    df_juegos = pd.read_csv('juegosLimpio.csv')
+    df_incidencias_usuario = pd.read_csv('AreasLimpio.csv')
+    df_mantenimiento = pd.read_csv('EncuestasSatisfaccionLimpia.csv')
+    df_juegos = pd.read_csv('IncidentesSeguridadLimpio.csv')
     # Comprobar IDs repetidos en el dataset de incidencias
-    ids_incidencias = df_incidencias_usuario['id']
+    ids_incidencias = df_incidencias_usuario['nombre']
     ids_repetidos_incidencias = ids_incidencias[ids_incidencias.duplicated()]
 
     if not ids_repetidos_incidencias.empty:

@@ -1,4 +1,4 @@
-ID,FECHA_REPORTE,TIPO_INCIDENTE,GRAVEDAD,AreaRecreativaID
+id,fechaReporte,tipoIncidente,gravedad,AreaRecreativaID
 1,2024-06-13,Robo,Alta,17538
 2,2024-07-16,Caida,Baja,16724
 3,2021-03-09,Caida,Critica,18191

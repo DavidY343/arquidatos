@@ -1,4 +1,4 @@
-ID,PUNTUACION_ACCESIBILIDAD,PUNTUACION_CALIDAD,COMENTARIOS,AreaRecreativaID,FECHA
+id,puntuacionCalidad,puntuacionAccesibilidad,COMENTARIOS,AreaRecreativaID,fechaEncuesta
 1,2,1,Regular,18510,2021-03-27
 2,5,5,Excelente,52143,2023-03-25
 3,1,1,Deficiente,6907760,2022-03-19
