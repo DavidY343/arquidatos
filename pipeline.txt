@@ -62,3 +62,44 @@ db.AreaRecreativa.aggregate([
         $out: "AreaRecreativa_Clima"
     }
 ])
+
+
+db.IncidenciasUsuario.aggregate([
+    {
+        $lookup: {
+            from: "Usuarios",
+            let: { usuario_ids: "$UsuarioID" },
+            pipeline: [
+                {
+                    $match: {
+                        $expr: { $in: [ "$NIF", "$$usuario_ids" ] }
+                    }
+                },
+                {
+                    $project: {
+                        NIF: 1,
+                        nombre: 1,
+                        email: 1,
+                        telefono: 1
+                    }
+                }
+            ],
+            as: "usuarios"
+        }
+    },
+    {
+        $project: {
+            id: 1,
+            tipoIncidencia: 1,
+            fechaReporte: 1,
+            estado: 1,
+            MantenimientoID: 1,
+            nivelEscalamiento: 1,
+            tiempoResolucion: 1,
+            usuarios: 1
+        }
+    },
+    {
+        $out: "Incidencia"
+    }
+])

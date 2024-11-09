@@ -102,7 +102,7 @@ if __name__ == "__main__":
             },
             "estadoOperativo": {
                 "bsonType": "string",
-                "enum": ["operativo", "no operativo"],
+                "enum": ["operativo", "inoperativo","en reparacion"],
                 "description": "Estado actual del área recreativa."
             },
             "COORD_GIS_X": {
@@ -175,6 +175,7 @@ if __name__ == "__main__":
             },
             "estadoGlobalArea": {
                 "bsonType": "string",
+                "enum": ["malo", "medio","bueno"],
                 "description": "Condición general del área recreativa (malo, medio o bueno)."
             },
             "coordenadasGPS": {

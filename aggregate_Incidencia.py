@@ -32,7 +32,7 @@ def crear_agregado():
         },
         # (Opcional) Aquí podrías agregar lógica para modificar el nivelEscalamiento, si es necesario
         {
-            '$out': 'Incidencia_Agregado'  # Guardamos el resultado en una nueva colección
+            '$out': 'Incidencia'  # Guardamos el resultado en una nueva colección
         }
     ]
     
