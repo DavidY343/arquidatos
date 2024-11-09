@@ -9,7 +9,7 @@ def insertar_csv_en_mongodb(nombre_archivo_csv, nombre_bd, nombre_coleccion, val
         df['nombre'] = df['nombre'].astype(str)
         df['fechaInstalacion'] = pd.to_datetime(df['fechaInstalacion'], errors='coerce')
 
-    if nombre_coleccion == "EncuestaSatifaccion":
+    if nombre_coleccion == "EncuestaSatisfaccion":
         df['id'] = df['id'].astype(str)
         df['fechaEncuesta'] = pd.to_datetime(df['fechaEncuesta'], errors='coerce')
         df['AreaRecreativaID'] = df['AreaRecreativaID'].astype(str)
@@ -252,6 +252,6 @@ if __name__ == "__main__":
     }
 
     insertar_csv_en_mongodb('AreasLimpio.csv', 'arqui2', 'AreaRecreativa', validador_areas_recreativas)
-    insertar_csv_en_mongodb('EncuestasSatisfaccionLimpia.csv', 'arqui2', 'EncuestaSatifaccion', validador_encuestas_satisfaccion)
+    insertar_csv_en_mongodb('EncuestasSatisfaccionLimpia.csv', 'arqui2', 'EncuestaSatisfaccion', validador_encuestas_satisfaccion)
     insertar_csv_en_mongodb('IncidentesSeguridadLimpio.csv', 'arqui2', 'IncidenteSeguridad', validador_incidente_seguridad)
     transformar_y_subir_datos()
