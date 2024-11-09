@@ -5,44 +5,75 @@ def crear_agregado():
     
     pipeline = [
         {
-            #Primer paso: unimos los juegos con los registros de mantenimiento
+            # Primer paso: unimos los juegos con los registros de mantenimiento
             '$lookup': {
-                'from': "Mantenimiento", #Colección de mantenimiento
-                'localField': "id", #Campo en la colección de juegos que hace referencia a Mantenimiento
-                'foreignField': "JuegoID", #Campo en la colección de mantenimiento que debe coincidir
-                'as': "Mantenimientos" #Alias para los resultados combinados
+                'from': "Mantenimiento",
+                'localField': "id",
+                'foreignField': "JuegoID",
+                'as': "Mantenimientos"
             }
         },
         {
-            # Unimos las incidencias asociadas a cada mantenimiento
+            # Convertimos los IDs de los mantenimientos en un array
+            '$set': {
+                'mantenimiento_ids': {
+                    '$map': {
+                        'input': '$Mantenimientos',
+                        'as': 'mantenimiento',
+                        'in': '$$mantenimiento.id'
+                    }
+                }
+            }
+        },
+        {
+            '$unwind': "$mantenimiento_ids"
+        },
+        {
+            # Unir incidencias asociadas a cada mantenimiento individual
             '$lookup': {
-                'from': "IncidenciasUsuario",  # Colección de incidencias
-                'let': { 'mantenimiento_ids': "$Mantenimientos.id" },  # Variable que contiene el array de IDs de mantenimientos
+                'from': "IncidenciasUsuario",
+                'let': { 'mantenimiento_id': "$mantenimiento_ids" },
                 'pipeline': [
                     { 
                         '$match': { 
                             '$expr': { 
-                                '$in': [ "$MantenimientoID", "$$mantenimiento_ids" ]  # Coincide con cualquier MantenimientoID dentro de mantenimiento_ids
+                                '$in': [ "$mantenimiento_id", "$MantenimientoID" ]  # Asegura coincidencia en el array de MantenimientoID
                             } 
                         }    
                     },
-                { 
-                    '$project': {  # Selecciona solo los campos que necesitas de cada incidencia
-                        'id': 1,
-                        'fechaReporte': 1,
-                        'estado': 1,
-                        'UsuarioID': 1,
-                        'tiempoResolucion': 1
-                    } 
-                }
-        
-            ],
-            'as': 'IncidenciasUsuarios'  # Nombre del campo resultante que contendrá las incidencias relacionadas
+                    { 
+                        '$project': {
+                            'id': 1,
+                            'fechaReporte': 1,
+                            'estado': 1,
+                            'UsuarioID': 1,
+                            'tiempoResolucion': 1
+                        } 
+                    }
+                ],
+                'as': 'IncidenciasUsuarios'
+            }
+        },
+        {
+            # Agrupamos nuevamente después del unwind
+            '$group': {
+                '_id': "$id",
+                'nombre': { '$first': "$nombre" },
+                'modelo': { '$first': "$modelo" },
+                'estadoOperativo': { '$first': "$estadoOperativo" },
+                'accesibilidad': { '$first': "$accesibilidad" },
+                'fechaInstalacion': { '$first': "$fechaInstalacion" },
+                'tipo': { '$first': "$tipo" },
+                'desgasteAcumulado': { '$first': "$desgasteAcumulado" },
+                'indicadorExposicion': { '$first': "$indicadorExposicion" },
+                'ultimaFechaMantenimiento': { '$first': "$ultimaFechaMantenimiento" },
+                'IncidenciasUsuarios': { '$push': "$IncidenciasUsuarios" },
+                'Mantenimientos': { '$push': "$mantenimiento_ids" }
             }
         },
         {
             '$project': {
-                'id': 1,
+                'id': '$_id',
                 'nombre': 1,
                 'modelo': 1,
                 'estadoOperativo': 1,
@@ -51,18 +82,13 @@ def crear_agregado():
                 'tipo': 1,
                 'desgasteAcumulado': 1,
                 'indicadorExposicion': 1,
-                'ultimaFechaMantenimiento': 1,  # Atributo ya existente en el CSV de juegos
-                'IncidenciasUsuarios': 1,  # Embebemos las incidencias relacionadas
-                'Mantenimientos': { '$map': {
-                    'input': '$Mantenimientos',
-                    'as': 'mantenimiento',
-                    'in': '$$mantenimiento.id'  # Aquí extraemos solo los IDs de los mantenimientos
-                    }
-                }
+                'ultimaFechaMantenimiento': 1,
+                'IncidenciasUsuarios': 1,
+                'Mantenimientos': 1
             }
         },
         {
-            #Guardamos el resultado en una nueva colección
+            # Guardamos el resultado en una nueva colección
             '$out': 'Juego'
         }
     ]
@@ -71,4 +97,4 @@ def crear_agregado():
     print("Agregado Juego creado con éxito.")
 
 if __name__ == "__main__":
-    crear_agregado() 
+    crear_agregado()
