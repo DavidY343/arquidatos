@@ -1,11 +1,11 @@
 from pymongo import MongoClient
-
-def crear_agregado_juego():
+def crear_agregado():
     client = MongoClient('mongodb://localhost:27017/')
     db = client['arqui2']
     
     pipeline = [
         {
+            # Unir juegos con registros de mantenimiento
             '$lookup': {
                 'from': 'Mantenimiento',
                 'localField': 'id',
@@ -66,7 +66,7 @@ def crear_agregado_juego():
         },
         {
             '$project': {
-                'id': 1,
+                'id': '$_id',
                 'nombre': 1,
                 'COD_BARRIO': 1,
                 'BARRIO': 1,
@@ -102,13 +102,12 @@ def crear_agregado_juego():
             }
         },
         {
-            '$out': 'JuegoAgregado'
+            '$out': 'Juego'
         }
     ]
     
     db['Juegos'].aggregate(pipeline)
-    
     print("Agregado Juego creado con éxito.")
 
 if __name__ == "__main__":
-    crear_agregado_juego()
+    crear_agregado()
