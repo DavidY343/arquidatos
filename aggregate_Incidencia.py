@@ -12,7 +12,7 @@ def crear_agregado():
                 'let': { 'usuario_ids': "$UsuarioID" },  # IDs de usuarios en la incidencia como lista
                 'pipeline': [
                     { '$match': { '$expr': { '$in': [ "$NIF", "$$usuario_ids" ] } } },
-                    { '$project': { 'NIF': 1, 'nombre': 1, 'email': 1, 'telefono': 1 } }
+                    { '$project': {'nombre': 1, 'email': 1, 'telefono': 1 } }
                 ],
                 'as': 'usuarios'
             }
@@ -20,7 +20,6 @@ def crear_agregado():
         # Proyectamos los campos necesarios y embebemos el nivelEscalamiento
         {
             '$project': {
-                'id': 1,
                 'tipoIncidencia': 1,
                 'fechaReporte': 1,
                 'estado': 1,

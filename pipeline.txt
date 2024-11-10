@@ -198,7 +198,6 @@ db.IncidenciasUsuario.aggregate([
                 },
                 {
                     $project: {
-                        NIF: 1,
                         nombre: 1,
                         email: 1,
                         telefono: 1
@@ -210,7 +209,6 @@ db.IncidenciasUsuario.aggregate([
     },
     {
         $project: {
-            id: 1,
             tipoIncidencia: 1,
             fechaReporte: 1,
             estado: 1,
