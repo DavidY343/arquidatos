@@ -424,9 +424,12 @@ def limpiar_datasets():
     # Eliminar la colección si ya existe
     if 'Juegos' in db.list_collection_names():
         db.drop_collection('Juegos')
+    if 'Mantenimiento' in db.list_collection_names():
         db.drop_collection('Mantenimiento')
-        db.drop_collection('IncidenciasUsuario')
 
+    if 'IncidenciasUsuario' in db.list_collection_names():
+        db.drop_collection('IncidenciasUsuario')
+        
     db.create_collection('Juegos', validator = {
         "$jsonSchema": {
             "bsonType": "object",

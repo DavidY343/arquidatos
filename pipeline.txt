@@ -1,3 +1,13 @@
+if (db.getCollectionNames().includes("Juego")) {
+    db.Juego.drop();
+}
+if (db.getCollectionNames().includes("Incidencia")) {
+    db.Incidencia.drop();
+}
+if (db.getCollectionNames().includes("AreaRecreativa_Clima")) {
+    db.AreaRecreativa_Clima.drop();
+}
+
 db.AreaRecreativa.aggregate([
     {
         $lookup: {
