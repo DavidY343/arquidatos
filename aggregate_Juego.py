@@ -19,11 +19,6 @@ def crear_agregado():
             }
         },
         {
-            '$addFields': {
-                'mantenimientos._id': '$mantenimientos.id'
-            }
-        },
-        {
             '$lookup': {
                 'from': 'IncidenciasUsuario',
                 'let': {'mantenimientoId': '$mantenimientos.id'},
@@ -36,7 +31,8 @@ def crear_agregado():
         },
         {
             '$group': {
-                '_id': '$id',
+                '_id': '$_id',
+                'id': {'$first': '$id'},
                 'nombre': {'$first': '$nombre'},
                 'modelo': {'$first': '$modelo'},
                 'estadoOperativo': {'$first': '$estadoOperativo'},
@@ -52,7 +48,7 @@ def crear_agregado():
         },
         {
             '$project': {
-                'id': 1,
+                '_id': 1,
                 'nombre': 1,
                 'estadoOperativo': 1,
                 'fechaInstalacion': 1,
@@ -76,11 +72,11 @@ def crear_agregado():
                         'input': '$incidencias',
                         'as': 'incidencia',
                         'in': {
-                            '_id': '$$incidencia.id',
-                            'mantenimientoId': '$$incidencia.MantenimientoID',
+                            '_id': '$$incidencia._id',
                             'tipoIncidencia': '$$incidencia.tipoIncidencia',
+                            'fechaReporte': '$$incidencia.fechaReporte',
                             'estado': '$$incidencia.estado',
-                            'fechaReporte': '$$incidencia.fechaReporte'
+                            'tiempoResolucion': '$$incidencia.tiempoResolucion'
                         }
                     }
                 },
